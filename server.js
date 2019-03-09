@@ -1,31 +1,88 @@
+'use strict';
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const path = require('path');
 
-const users = require('./routes/api/users');
-const profile = require('./routes/api/profile');
-const posts = require('./routes/api/posts');
+const { router: usersRouter } = require('./users');
+const { router: entriesRouter } = require('./entries');
+const { Entry } = require('./entries/models');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
+mongoose.Promise = global.Promise;
+
+const { PORT, DATABASE_URL } = require('./config');
 
 const app = express();
 
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
 
-//DB Config
-const db = require('./config/keys').mongoURI;
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/users', usersRouter);
+app.use('/entries', entriesRouter);
+app.use('/auth', authRouter);
 
-//Connect to MongoDB
-mongoose
-.connect(db)
-.then(() => console.log('MongoDB Connected')) //If connection successful
-.catch(err => console.log(err)); //If connection not successful
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
-app.get('/', (req, res) => res.send('Hello World'));
+app.get('/', function(req, res) {
+    res.sendFile('index.html', {root: __dirname });
+});
 
-//Use Routes
-app.use('/api/users', users);
-app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: 'Not Found' });
+});
 
+// Referenced by both runServer and closeServer. closeServer
+// assumes runServer has run and set `server` to a server object
+let server;
 
-const port = process.env.PORT || 8080;  //when deployed to heroku, either looks to env OR defaults to 8080
+function runServer(databaseUrl, port = PORT) {
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
+    });
+  });
+}
+
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+if (require.main === module) {
+  runServer(DATABASE_URL).catch(err => console.error(err));
+}
+
+module.exports = { app, runServer, closeServer };

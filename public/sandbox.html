@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flexbox Sandbox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+ 	 <nav>
+    <h1 class="nav-heading">Flexbox Sandbox</h1>
+    <a class="logout-btn" href="index.html"><button>Log Out</button></a>
+    <section id="controlBox">
+      <button id="addElement">Add Element</button>
+      <button id="removeElement">Remove Element</button>
+      <button id="removeAll">Remove All</button>
+      <section id="flexOptions">
+        <button class="flexButton" id="heightPlus">Height: </button>
+        <button class="flexButton" id="widthPlus">Width: </button>
+        <button class="flexButton" id="flexDirection">flex-direction: </button>
+        <button class="flexButton" id="flexWrap">flex-wrap: </button>
+        <button class="flexButton" id="flexFlow">flex-flow:------------ </button>
+        <button class="flexButton" id="justifyContent">justify-content: </button>
+        <button class="flexButton" id="alignItems">align-items: </button>
+        <button class="flexButton" id="alignContent">align-content: </button>
+        <button class="flexButton" id="alignSelf">align-self: </button>
+        <button class="flexButton" id="order">order: </button>
+        <button class="flexButton" id="flex">flex:-------------- </button>
+        <button class="flexButton" id="flexGrow">flex-grow: </button>
+        <button class="flexButton" id="flexShrink">flex-shrink: </button>
+        <button class="flexButton" id="flexBasis">flex-basis: </button> 
+      </section>
+      <form id="newEntry">
+        <span>
+          <label for="customBackground">Custom background: </label>
+          <input type="text" name="customBackground" id="customBackground" required>
+        </span>
+        <button type="submit">Set background</button>
+      </form>
+      <form id="clearBackground">
+        <button type="submit">Clear custom background</button>
+      </form>
+      <form id="startGame">
+        <button type="submit">Start Game!</button>
+      </form>
+    </section>
+ 	 </nav>
+    <main>
+      <div id="boardBackground">
+        <div id="gameBoard"></div>
+        <div id="board" class="fillerClass height:------ width:------ flex-direction:row flex-wrap:nowrap justify-content:flex-start align-items:stretch align-content:stretch align-self:------ order:0 flex-grow:0 flex-shrink:1 flex-basis:auto"></div>
+      </div>
+    </main>
+        <script
+		  src="https://code.jquery.com/jquery-3.3.1.min.js"
+		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		  crossorigin="anonymous"></script>
+		    <script type="text/javascript" src="sandbox.js"></script>
+ 	</body>
+</html>

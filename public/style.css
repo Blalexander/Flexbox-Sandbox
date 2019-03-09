@@ -1,0 +1,226 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#signupButton {
+  margin-top: 5vh;
+  height: 50px;
+  width: 100px;
+}
+
+#landing {
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+#landing section {
+  margin-top: 10%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#login {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+nav {
+  height: 100vh;
+  width: 20vw;
+  border: 2px dashed green;
+  float: right;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#boardBackground {
+  z-index: -1;
+  background-color: lightblue;
+  height: 100vh;
+  width: 79%;
+  display: inline-flex;
+  align-items: center;
+}
+
+#gameBoard {
+  display: flex;
+  z-index: 0;
+  height: 90%;
+  width: 78%;
+  position: absolute;
+  background-color: beige;
+}
+
+#board {
+  z-index: 1;
+  /* background-image: url('https://i.imgur.com/3897Gsw.png');  FOR TESTING */
+  display: flex;
+  background-color: beige;
+  box-shadow: inset 0 0 85px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 90%;
+}
+
+#controlBox {
+  height: 60vh;
+  width: 15vw;
+  border: 5px solid green;
+  margin-top: 3vh;
+}
+
+#flexOptions {
+  height: 80%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+}
+
+#addElement {
+  width: 100%;
+  height: 4vh;
+}
+
+#removeElement {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  width: 100%;
+  height: 4vh;
+}
+
+.flexButton {
+  height: 3vh;
+  text-align: left;
+}
+
+.largestElement {
+  display: flex;
+  height: 20%;
+  width: 20%;
+}
+
+.mediumElement {
+  display: flex;
+  height: 20%;
+  width: 20%;
+}
+
+.smallElement {
+  display: flex;
+  height: 20%;
+  width: 20%;
+}
+
+#item1 {
+  border: 5px dashed green;
+}
+
+#item2 {
+  border: 5px dashed orange;
+}
+
+#item3 {
+  border: 5px dashed blue;
+}
+
+#item4 {
+  border: 5px dashed yellow;
+}
+
+#item5 {
+  border: 5px dashed brown;
+}
+
+#item6 {
+  border: 5px dashed green;
+}
+
+#item7 {
+  border: 5px dashed orange;
+}
+
+#item8 {
+  border: 5px dashed blue;
+}
+
+#item9 {
+  border: 5px dashed yellow;
+}
+
+#item10 {
+  border: 5px dashed brown;
+}
+
+#item11 {
+  border: 5px dashed green;
+}
+
+#item12 {
+  border: 5px dashed orange;
+}
+
+#item13 {
+  border: 5px dashed blue;
+}
+
+#item14 {
+  border: 5px dashed yellow;
+}
+
+#item15 {
+  border: 5px dashed brown;
+}
+
+.containerDiv {
+  display: flex;
+  height: 20%;
+  width: 20%;
+  border: 5px dashed red;
+  background-color: red;
+}
+
+.mediumDiv {
+  display: flex;
+  height: 20%;
+  width: 20%;
+  border: 5px dashed green;
+  background-color: green;
+}
+
+.smallDiv {
+  display: flex;
+  height: 20%;
+  width: 20%;
+  border: 5px dashed blue;
+  background-color: blue;
+}
+
+.tinyDiv {
+  display: flex;
+  height: 20%;
+  width: 20%;
+  border: 5px dashed purple;
+  background-color: purple;
+}
+
+#levelDisplay {
+  position: absolute;
+}
+
+.pulse {
+  animation: shadow-pulse 1s infinite;
+}
+
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+  }
+}
