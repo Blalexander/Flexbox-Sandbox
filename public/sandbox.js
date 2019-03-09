@@ -103,40 +103,85 @@ function levelOne() {
 }
 
 function levelOneComplete() {
-	// let testVal1 = document.getElementById('item1').getClientRects()[0];
-	// let testSol1 = document.getElementById('mediumDiv').getClientRects()[0];
-
-	// console.log(testVal1);
-	// console.log(testSol1);
-
 	let boardsChildNodes = document.getElementById('board').childNodes;
 	let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
+	let leftTest = [];
+	let topTest = [];
+	let heightTest = [];
+	let widthTest = [];
 
 	for(i=0;i<boardsChildNodes.length;i++) {
 		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft + 10;
 		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft - 10;
-		console.log(maxCorrectAnswer, minCorrectAnswer);
+		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i+1].offsetLeft);
 
 		if(boardsChildNodes[i].offsetLeft <= maxCorrectAnswer && boardsChildNodes[i].offsetLeft >= minCorrectAnswer) {
 			console.log("Pass!");
+			leftTest.push("Pass");
 		}
 		else {
 			console.log("Fail!");
+			leftTest.push("Fail");
 		}
-		// console.log(boardsChildNodes[i].id, boardsChildNodes[i].offsetLeft);
-		// console.log(gameBoardsChildNodes[i+1].id, gameBoardsChildNodes[i+1].offsetLeft);
 	}
 
+	for(i=0;i<boardsChildNodes.length;i++) {
+		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetTop + 60;
+		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetTop - 60;
+		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i+1].offsetTop);
 
+		if(boardsChildNodes[i].offsetTop <= maxCorrectAnswer && boardsChildNodes[i].offsetTop >= minCorrectAnswer) {
+			console.log("Pass!");
+			topTest.push("Pass");
+		}
+		else {
+			console.log("Fail!");
+			topTest.push("Fail");
+		}
+	}
 
-	// $.each(currentElement, function(index, value) {
-	// 	testArr.push(value);
-	// });
-	// testArr.splice(0, 1);
-	// for(i=0;i<12;i++) {
-	// 	let buttonName = buttonIdHolder[i];
-	// 	document.getElementById(buttonName).innerHTML = testArr[i];
-	// }
+	for(i=0;i<boardsChildNodes.length;i++) {
+		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetWidth + 10;
+		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetWidth - 10;
+		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i+1].offsetWidth);
+
+		if(boardsChildNodes[i].offsetWidth <= maxCorrectAnswer && boardsChildNodes[i].offsetWidth >= minCorrectAnswer) {
+			console.log("Pass!");
+			widthTest.push("Pass");
+		}
+		else {
+			console.log("Fail!");
+			widthTest.push("Fail");
+		}
+	}
+
+	for(i=0;i<boardsChildNodes.length;i++) {
+		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetHeight + 10;
+		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetHeight - 10;
+		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i+1].offsetHeight);
+
+		if(boardsChildNodes[i].offsetHeight <= maxCorrectAnswer && boardsChildNodes[i].offsetHeight >= minCorrectAnswer) {
+			console.log("Pass!");
+			heightTest.push("Pass");
+		}
+		else {
+			console.log("Fail!");
+			heightTest.push("Fail");
+		}
+	}
+
+	let testAnswers = leftTest.concat(topTest, heightTest, widthTest);
+	testAnswers.every(checkPass);
+}
+
+function checkPass(testItem) {
+	if(testItem == "Fail") {
+		console.log("Failed Tests");
+	}
+	else {
+		console.log("Winner!");
+		$('#levelDisplay').html("Correct!");
+	}
 }
 
 function startGame() {
@@ -707,6 +752,7 @@ flexBasisController();
 
 $('.flexButton').on('click', function() {
 	elementValueUpdater();
+	levelOneComplete();
 });
 
 //have default values highlighted green?
