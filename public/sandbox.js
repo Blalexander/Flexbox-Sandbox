@@ -64,21 +64,79 @@ $(()=>{
 	}
 });
 
+
+
+
+
 startGame();
 let level = 1;
+let fd = document.getElementById('flexDirection');
+let fw = document.getElementById('flexWrap');
+let jc = document.getElementById('justifyContent');
+let ai = document.getElementById('alignItems');
+let ac = document.getElementById('alignContent');
+let as = document.getElementById('alignSelf');
+// let ac = document.getElementById('alignContent');
+
+
 
 function levelOne() {
-  for(i=0;i<4;i++) {
-    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div class="mediumDiv"></div>');
-    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div class="smallDiv"></div>');
-    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div class="tinyDiv"></div>');
-  }
+  // for(i=0;i<4;i++) {
+    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
+    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="smallDiv" class="smallDiv"></div>');
+    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="tinyDiv" class="tinyDiv"></div>');
+	// }
+	let answerBox = ["mediumDiv", "smallDiv", "tinyDiv"];
+
+
   document.getElementById('gameBoard').style.flexDirection = "column";
-  document.getElementById('gameBoard').style.flexWrap = "wrap-reverse";
+  // document.getElementById('gameBoard').style.flexWrap = "wrap-reverse";
   document.getElementById('gameBoard').style.justifyContent = "center";
   document.getElementById('gameBoard').style.alignItems = "center";
-  document.getElementById('gameBoard').style.alignContent = "center";
-  //RANDOMIZE VALUES????
+  // document.getElementById('gameBoard').style.alignContent = "center";
+	//RANDOMIZE VALUES????
+	
+	$('#endGame').submit(function(event) {
+    event.preventDefault();
+		levelOneComplete();
+  });
+}
+
+function levelOneComplete() {
+	// let testVal1 = document.getElementById('item1').getClientRects()[0];
+	// let testSol1 = document.getElementById('mediumDiv').getClientRects()[0];
+
+	// console.log(testVal1);
+	// console.log(testSol1);
+
+	let boardsChildNodes = document.getElementById('board').childNodes;
+	let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
+
+	for(i=0;i<boardsChildNodes.length;i++) {
+		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft + 10;
+		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft - 10;
+		console.log(maxCorrectAnswer, minCorrectAnswer);
+
+		if(boardsChildNodes[i].offsetLeft <= maxCorrectAnswer && boardsChildNodes[i].offsetLeft >= minCorrectAnswer) {
+			console.log("Pass!");
+		}
+		else {
+			console.log("Fail!");
+		}
+		// console.log(boardsChildNodes[i].id, boardsChildNodes[i].offsetLeft);
+		// console.log(gameBoardsChildNodes[i+1].id, gameBoardsChildNodes[i+1].offsetLeft);
+	}
+
+
+
+	// $.each(currentElement, function(index, value) {
+	// 	testArr.push(value);
+	// });
+	// testArr.splice(0, 1);
+	// for(i=0;i<12;i++) {
+	// 	let buttonName = buttonIdHolder[i];
+	// 	document.getElementById(buttonName).innerHTML = testArr[i];
+	// }
 }
 
 function startGame() {
