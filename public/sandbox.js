@@ -69,74 +69,66 @@ $(()=>{
 
 
 startGame();
-let level = 1;
 
 function startGame() {
   $('#startGame').submit(function(event) {
     event.preventDefault();
-    $('#gameBoard').html(`<h1 id="levelDisplay">Level: ${level}</h1>`);
+    $('#gameBoard').html("");
 		document.getElementById('board').style.backgroundColor = "transparent";
-
-    if(level === 1) {
-			// levelOne();
-			levelRandomizer();
-    }
-    else if(level == 2) {
-      levelTwo();
-    }
-    else if(level == 3) {
-      // document.getElementById('gameBoard').appendChild(gameDiv1);
-    }
-    else {
-      console.log("No level detected!");
-    }
+		levelRandomizer();
   });
 }
 
 function levelRandomizer() {
 	let swappableGameIds = ["gameItem1", "gameItem2", "gameItem3", "gameItem4", "gameItem5"];
-	let gameIterator = 0;
 	
-	let randContainers = Math.floor(Math.random() * 5) + 1;
+	// let randFlexNumber = Math.floor(Math.random() * 10);
+	// let randFlexOption = Math.floor(Math.random() * 10);
 	let randMediums = Math.floor(Math.random() * 5) + 1;
 	let randSmall = Math.floor(Math.random() * 5);
 	let percentStorage = ["20%", "40%", "60%", "80%", "100%"];
 	let randPercent = Math.floor(Math.random() * 6);
 
-	// for(i=0;i<randContainers;i++) {
-		document.getElementById('gameBoard').insertAdjacentHTML('beforeend', `<div id="containerDiv" class="containerDiv"></div>`);
-		document.getElementById('containerDiv').style.height = percentStorage[randPercent];
-		document.getElementById('containerDiv').style.width = percentStorage[randPercent];
-	// }
+	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', `<div id="containerDiv" class="containerDiv"></div>`);
+	document.getElementById('containerDiv').style.height = percentStorage[randPercent];
+	document.getElementById('containerDiv').style.width = percentStorage[randPercent];
 	for(i=0;i<randMediums;i++) {
 		document.getElementById('containerDiv').insertAdjacentHTML('beforeend', `<div id=${swappableGameIds} class="mediumDiv"></div>`);
 	}
+
+	let randFlexNumber = Math.floor(Math.random() * 10);
+	let randomizeFlexOptions = ["flexDirection", "flexWrap", "justifyContent", "alignItems", "alignContent", "alignSelf", "order", "flexGrow", "flexShrink", "flexBasis"];
+	let randFlexOption = Math.floor(Math.random() * 10);
+	let fd = ["row", "row-reverse", "column", "column-reverse", "row", "column"];
+
+	let selectedFlexOption = randomizeFlexOptions[0];
+	if(selectedFlexOption == "flexDirection") {
+		document.getElementById('containerDiv').style.flexDirection = fd[2];
+	}
+
 	$('#endGame').submit(function(event) {
     event.preventDefault();
-		levelOneComplete();
+		puzzleCompleted();
   });
-
-	// let buttonIdHolder = ["heightPlus", "widthPlus", "flexDirection", "flexWrap", "justifyContent", "alignItems", "alignContent", "alignSelf", "order", "flexGrow", "flexShrink", "flexBasis"];
-	// document.getElementById(targettedElement).style.height = "40%";
 
 }
 
-function levelOne() {
-	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
-	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="smallDiv" class="smallDiv"></div>');
-	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="tinyDiv" class="tinyDiv"></div>');
-	let answerBox = ["mediumDiv", "smallDiv", "tinyDiv"];
+// function levelOne() {
+// 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
+// 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="smallDiv" class="smallDiv"></div>');
+// 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="tinyDiv" class="tinyDiv"></div>');
+// 	let answerBox = ["mediumDiv", "smallDiv", "tinyDiv"];
 
 
-  document.getElementById('gameBoard').style.flexDirection = "column";
-  document.getElementById('gameBoard').style.justifyContent = "center";
-  document.getElementById('gameBoard').style.alignItems = "center";
+//   document.getElementById('gameBoard').style.flexDirection = "column";
+//   document.getElementById('gameBoard').style.justifyContent = "center";
+//   document.getElementById('gameBoard').style.alignItems = "center";
 	
-	$('#endGame').submit(function(event) {
-    event.preventDefault();
-		levelOneComplete();
-  });
-}
+// 	$('#endGame').submit(function(event) {
+//     event.preventDefault();
+// 		puzzleCompleted();
+//   });
+// }
 
 function testChildNodes(itemChildNodes, containerDivChildNodes) {
 	let leftTest = [];
@@ -218,9 +210,9 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft + 10;
-		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft - 10;
-		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i+1].offsetLeft);
+		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetLeft + 10;
+		let minCorrectAnswer = gameBoardsChildNodes[i].offsetLeft - 10;
+		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft);
 
 		if(boardsChildNodes[i].offsetLeft <= maxCorrectAnswer && boardsChildNodes[i].offsetLeft >= minCorrectAnswer) {
 			console.log("Left Pass!");
@@ -233,9 +225,9 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	}
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetTop + 60;
-		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetTop - 60;
-		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i+1].offsetTop);
+		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetTop + 60;
+		let minCorrectAnswer = gameBoardsChildNodes[i].offsetTop - 60;
+		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
 
 		if(boardsChildNodes[i].offsetTop <= maxCorrectAnswer && boardsChildNodes[i].offsetTop >= minCorrectAnswer) {
 			console.log("Top Pass!");
@@ -248,9 +240,9 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	}
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetWidth + 10;
-		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetWidth - 10;
-		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i+1].offsetWidth);
+		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetWidth + 10;
+		let minCorrectAnswer = gameBoardsChildNodes[i].offsetWidth - 10;
+		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
 
 		if(boardsChildNodes[i].offsetWidth <= maxCorrectAnswer && boardsChildNodes[i].offsetWidth >= minCorrectAnswer) {
 			console.log("Width Pass!");
@@ -263,9 +255,9 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	}
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetHeight + 10;
-		let minCorrectAnswer = gameBoardsChildNodes[i+1].offsetHeight - 10;
-		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i+1].offsetHeight);
+		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetHeight + 10;
+		let minCorrectAnswer = gameBoardsChildNodes[i].offsetHeight - 10;
+		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
 
 		if(boardsChildNodes[i].offsetHeight <= maxCorrectAnswer && boardsChildNodes[i].offsetHeight >= minCorrectAnswer) {
 			console.log("Height Pass!");
@@ -282,7 +274,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	return testAnswers;
 }
 
-function levelOneComplete() {
+function puzzleCompleted() {
 	let boardsChildNodes = document.getElementById('board').childNodes;
 	let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
 	let itemChildNodes = document.getElementById('item1').childNodes;
@@ -295,11 +287,12 @@ function levelOneComplete() {
 
 
 
-	let testAgainstContainer = document.getElementById('gameBoard').childNodes.length -1;
+	let testAgainstContainer = document.getElementById('gameBoard').childNodes.length;
 	let testAgainstChild = document.getElementById('containerDiv').childNodes.length;
 	let bothTests = testAgainstContainer + testAgainstChild;
 	bothTests *= 4;
 	let bothAnswers = containerNodeTests.concat(childNodeTests);
+	console.log(bothAnswers, bothTests);
 
 	if(bothAnswers.length == bothTests) {
 		bothAnswers.every(checkPass);
@@ -312,8 +305,6 @@ function checkPass(testItem) {
 	}
 	else {
 		console.log("Winner!");
-		$('#levelDisplay').html("Correct!");
-		level++;
 	}
 }
 
@@ -870,7 +861,7 @@ flexBasisController();
 
 $('.flexButton').on('click', function() {
 	elementValueUpdater();
-	levelOneComplete();
+	puzzleCompleted();
 });
 
 //have default values highlighted green?
