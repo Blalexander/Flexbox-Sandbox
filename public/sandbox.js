@@ -63,38 +63,74 @@ $(()=>{
 		location.replace("/index.html");
 	}
 });
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 startGame();
 let level = 1;
-let fd = document.getElementById('flexDirection');
-let fw = document.getElementById('flexWrap');
-let jc = document.getElementById('justifyContent');
-let ai = document.getElementById('alignItems');
-let ac = document.getElementById('alignContent');
-let as = document.getElementById('alignSelf');
-// let ac = document.getElementById('alignContent');
 
+function startGame() {
+  $('#startGame').submit(function(event) {
+    event.preventDefault();
+    $('#gameBoard').html(`<h1 id="levelDisplay">Level: ${level}</h1>`);
+		document.getElementById('board').style.backgroundColor = "transparent";
 
+    if(level === 1) {
+			// levelOne();
+			levelRandomizer();
+    }
+    else if(level == 2) {
+      levelTwo();
+    }
+    else if(level == 3) {
+      // document.getElementById('gameBoard').appendChild(gameDiv1);
+    }
+    else {
+      console.log("No level detected!");
+    }
+  });
+}
+
+function levelRandomizer() {
+	let swappableGameIds = ["gameItem1", "gameItem2", "gameItem3", "gameItem4", "gameItem5"];
+	let gameIterator = 0;
+	
+	let randContainers = Math.floor(Math.random() * 5) + 1;
+	let randMediums = Math.floor(Math.random() * 5) + 1;
+	let randSmall = Math.floor(Math.random() * 5);
+	let percentStorage = ["20%", "40%", "60%", "80%", "100%"];
+	let randPercent = Math.floor(Math.random() * 6);
+
+	// for(i=0;i<randContainers;i++) {
+		document.getElementById('gameBoard').insertAdjacentHTML('beforeend', `<div id="containerDiv" class="containerDiv"></div>`);
+		document.getElementById('containerDiv').style.height = percentStorage[randPercent];
+		document.getElementById('containerDiv').style.width = percentStorage[randPercent];
+	// }
+	for(i=0;i<randMediums;i++) {
+		document.getElementById('containerDiv').insertAdjacentHTML('beforeend', `<div id=${swappableGameIds} class="mediumDiv"></div>`);
+	}
+	$('#endGame').submit(function(event) {
+    event.preventDefault();
+		levelOneComplete();
+  });
+
+	// let buttonIdHolder = ["heightPlus", "widthPlus", "flexDirection", "flexWrap", "justifyContent", "alignItems", "alignContent", "alignSelf", "order", "flexGrow", "flexShrink", "flexBasis"];
+	// document.getElementById(targettedElement).style.height = "40%";
+
+}
 
 function levelOne() {
-  // for(i=0;i<4;i++) {
-    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
-    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="smallDiv" class="smallDiv"></div>');
-    document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="tinyDiv" class="tinyDiv"></div>');
-	// }
+	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
+	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="smallDiv" class="smallDiv"></div>');
+	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="tinyDiv" class="tinyDiv"></div>');
 	let answerBox = ["mediumDiv", "smallDiv", "tinyDiv"];
 
 
   document.getElementById('gameBoard').style.flexDirection = "column";
-  // document.getElementById('gameBoard').style.flexWrap = "wrap-reverse";
   document.getElementById('gameBoard').style.justifyContent = "center";
   document.getElementById('gameBoard').style.alignItems = "center";
-  // document.getElementById('gameBoard').style.alignContent = "center";
-	//RANDOMIZE VALUES????
 	
 	$('#endGame').submit(function(event) {
     event.preventDefault();
@@ -102,13 +138,84 @@ function levelOne() {
   });
 }
 
-function levelOneComplete() {
-	let boardsChildNodes = document.getElementById('board').childNodes;
-	let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
+function testChildNodes(itemChildNodes, containerDivChildNodes) {
 	let leftTest = [];
 	let topTest = [];
 	let heightTest = [];
 	let widthTest = [];
+	
+
+	for(i=0;i<itemChildNodes.length;i++) {
+		let maxCorrectAnswer = containerDivChildNodes[i].offsetLeft + 10;
+		let minCorrectAnswer = containerDivChildNodes[i].offsetLeft - 10;
+		console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
+
+		if(itemChildNodes[i].offsetLeft <= maxCorrectAnswer && itemChildNodes[i].offsetLeft >= minCorrectAnswer) {
+			console.log("Left Pass!");
+			leftTest.push("Pass");
+		}
+		else {
+			console.log("Left Fail!");
+			leftTest.push("Fail");
+		}
+	}
+
+	for(i=0;i<itemChildNodes.length;i++) {
+		let maxCorrectAnswer = containerDivChildNodes[i].offsetTop + 60;
+		let minCorrectAnswer = containerDivChildNodes[i].offsetTop - 60;
+		console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
+
+		if(itemChildNodes[i].offsetTop <= maxCorrectAnswer && itemChildNodes[i].offsetTop >= minCorrectAnswer) {
+			console.log("Top Pass!");
+			topTest.push("Pass");
+		}
+		else {
+			console.log("Top Fail!");
+			topTest.push("Fail");
+		}
+	}
+
+	for(i=0;i<itemChildNodes.length;i++) {
+		let maxCorrectAnswer = containerDivChildNodes[i].offsetWidth + 10;
+		let minCorrectAnswer = containerDivChildNodes[i].offsetWidth - 10;
+		console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
+
+		if(itemChildNodes[i].offsetWidth <= maxCorrectAnswer && itemChildNodes[i].offsetWidth >= minCorrectAnswer) {
+			console.log("Width Pass!");
+			widthTest.push("Pass");
+		}
+		else {
+			console.log("Width Fail!");
+			widthTest.push("Fail");
+		}
+	}
+
+	for(i=0;i<itemChildNodes.length;i++) {
+		let maxCorrectAnswer = containerDivChildNodes[i].offsetHeight + 10;
+		let minCorrectAnswer = containerDivChildNodes[i].offsetHeight - 10;
+		console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
+
+		if(itemChildNodes[i].offsetHeight <= maxCorrectAnswer && itemChildNodes[i].offsetHeight >= minCorrectAnswer) {
+			console.log("Height Pass!");
+			heightTest.push("Pass");
+		}
+		else {
+			console.log("Height Fail!");
+			heightTest.push("Fail");
+		}
+	}
+
+	let testAnswers = leftTest.concat(topTest, heightTest, widthTest);
+
+	return testAnswers;
+}
+
+function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
+	let leftTest = [];
+	let topTest = [];
+	let heightTest = [];
+	let widthTest = [];
+	
 
 	for(i=0;i<boardsChildNodes.length;i++) {
 		let maxCorrectAnswer = gameBoardsChildNodes[i+1].offsetLeft + 10;
@@ -116,11 +223,11 @@ function levelOneComplete() {
 		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i+1].offsetLeft);
 
 		if(boardsChildNodes[i].offsetLeft <= maxCorrectAnswer && boardsChildNodes[i].offsetLeft >= minCorrectAnswer) {
-			console.log("Pass!");
+			console.log("Left Pass!");
 			leftTest.push("Pass");
 		}
 		else {
-			console.log("Fail!");
+			console.log("Left Fail!");
 			leftTest.push("Fail");
 		}
 	}
@@ -131,11 +238,11 @@ function levelOneComplete() {
 		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i+1].offsetTop);
 
 		if(boardsChildNodes[i].offsetTop <= maxCorrectAnswer && boardsChildNodes[i].offsetTop >= minCorrectAnswer) {
-			console.log("Pass!");
+			console.log("Top Pass!");
 			topTest.push("Pass");
 		}
 		else {
-			console.log("Fail!");
+			console.log("Top Fail!");
 			topTest.push("Fail");
 		}
 	}
@@ -146,11 +253,11 @@ function levelOneComplete() {
 		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i+1].offsetWidth);
 
 		if(boardsChildNodes[i].offsetWidth <= maxCorrectAnswer && boardsChildNodes[i].offsetWidth >= minCorrectAnswer) {
-			console.log("Pass!");
+			console.log("Width Pass!");
 			widthTest.push("Pass");
 		}
 		else {
-			console.log("Fail!");
+			console.log("Width Fail!");
 			widthTest.push("Fail");
 		}
 	}
@@ -161,17 +268,42 @@ function levelOneComplete() {
 		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i+1].offsetHeight);
 
 		if(boardsChildNodes[i].offsetHeight <= maxCorrectAnswer && boardsChildNodes[i].offsetHeight >= minCorrectAnswer) {
-			console.log("Pass!");
+			console.log("Height Pass!");
 			heightTest.push("Pass");
 		}
 		else {
-			console.log("Fail!");
+			console.log("Height Fail!");
 			heightTest.push("Fail");
 		}
 	}
 
 	let testAnswers = leftTest.concat(topTest, heightTest, widthTest);
-	testAnswers.every(checkPass);
+
+	return testAnswers;
+}
+
+function levelOneComplete() {
+	let boardsChildNodes = document.getElementById('board').childNodes;
+	let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
+	let itemChildNodes = document.getElementById('item1').childNodes;
+	let containerDivChildNodes = document.getElementById('containerDiv').childNodes;
+
+	let containerNodeTests = testContainerNode(boardsChildNodes, gameBoardsChildNodes);
+	console.log(containerNodeTests);
+	let childNodeTests = testChildNodes(itemChildNodes, containerDivChildNodes);
+	console.log(childNodeTests);
+
+
+
+	let testAgainstContainer = document.getElementById('gameBoard').childNodes.length -1;
+	let testAgainstChild = document.getElementById('containerDiv').childNodes.length;
+	let bothTests = testAgainstContainer + testAgainstChild;
+	bothTests *= 4;
+	let bothAnswers = containerNodeTests.concat(childNodeTests);
+
+	if(bothAnswers.length == bothTests) {
+		bothAnswers.every(checkPass);
+	}	
 }
 
 function checkPass(testItem) {
@@ -181,31 +313,17 @@ function checkPass(testItem) {
 	else {
 		console.log("Winner!");
 		$('#levelDisplay').html("Correct!");
+		level++;
 	}
 }
 
-function startGame() {
-  $('#startGame').submit(function(event) {
-    event.preventDefault();
-    $('#gameBoard').html(`<h1 id="levelDisplay">Level: ${level}</h1>`);
-		document.getElementById('board').style.backgroundColor = "transparent";
 
-    // document.getElementById('gameBoard').appendChild(gameDiv1);
 
-    if(level === 1) {
-      levelOne();
-    }
-    else if(level == 2) {
-      // document.getElementById('gameBoard').appendChild(gameDiv1);
-    }
-    else if(level == 3) {
-      // document.getElementById('gameBoard').appendChild(gameDiv1);
-    }
-    else {
-      console.log("No level detected!");
-    }
-  });
-}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 let targettedElement;
 let targettedElementsClass;
