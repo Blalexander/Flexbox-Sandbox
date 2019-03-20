@@ -69,11 +69,16 @@ $(()=>{
 
 
 startGame();
+let gameCompleted;
 
 function startGame() {
   $('#startGame').submit(function(event) {
-    event.preventDefault();
-    $('#gameBoard').html("");
+		event.preventDefault();
+		gameGoing = true;
+		$('#gameBoard').html("");
+		$('#board').html("");		
+		targettedElement = "board";
+		elementSelector();
 		document.getElementById('board').style.backgroundColor = "transparent";
 		levelRandomizer();
   });
@@ -96,18 +101,75 @@ function levelRandomizer() {
 		document.getElementById('containerDiv').insertAdjacentHTML('beforeend', `<div id=${swappableGameIds} class="mediumDiv"></div>`);
 	}
 
-	let randFlexNumber = Math.floor(Math.random() * 10);
-	let randomizeFlexOptions = ["flexDirection", "flexWrap", "justifyContent", "alignItems", "alignContent", "alignSelf", "order", "flexGrow", "flexShrink", "flexBasis"];
-	let randFlexOption = Math.floor(Math.random() * 10);
+	let randFlexNumber = Math.floor(Math.random() * 9);
+	let randomizeFlexOptions = ["flexDirection", "flexWrap", "justifyContent", "alignItems", "alignContent", "alignSelf", "flexGrow", "flexShrink", "flexBasis"];
+	let randFlexOption = Math.floor(Math.random() * 5);
 	let fd = ["row", "row-reverse", "column", "column-reverse", "row", "column"];
+	let fw = ["nowrap", "wrap", "wrap-reverse", "nowrap", "wrap", "wrap-reverse"];
+	let jc = ["flex-start", "flex-end", "center", "space-evenly", "space-around", "space-between"];
+	let ai = ["flex-start", "flex-end", "center", "stretch", "baseline", "stretch"];
+	let ac = ["flex-start", "flex-end", "center", "stretch", "space-around", "space-between"];
+	let as = ["flex-start", "flex-end", "center", "stretch", "baseline", "auto"];
+	let fg = ["0", "1", "2", "3", "4", "4"];
+	let fs = ["1", "2", "3", "4", "5", "5"];
+	let fb = ["auto", "1", "2", "3", "4", "4"];
 
-	let selectedFlexOption = randomizeFlexOptions[0];
-	if(selectedFlexOption == "flexDirection") {
-		document.getElementById('containerDiv').style.flexDirection = fd[2];
+
+
+	for(i=0;i<5;i++) {
+		let randFlexNumber = Math.floor(Math.random() * 9);
+		let randFlexOption = Math.floor(Math.random() * 5);
+		let selectedFlexOption = randomizeFlexOptions[randFlexNumber];
+
+
+		switch(selectedFlexOption) {
+			case "flexDirection":
+			console.log("flexDirection");
+				document.getElementById('containerDiv').style.flexDirection = fd[randFlexOption];
+				break;
+			case "flexWrap":
+				console.log("flexWrap");
+				document.getElementById('containerDiv').style.flexWrap = fw[randFlexOption];
+				break;
+			case "justifyContent":
+				console.log("justifyContent");
+				document.getElementById('containerDiv').style.justifyContent = jc[randFlexOption];
+				break;
+			case "alignItems":
+				console.log("alignItems");
+				document.getElementById('containerDiv').style.alignItems = ai[randFlexOption];
+				break;
+			case "alignContent":
+				console.log("alignContent");
+				document.getElementById('containerDiv').style.alignContent = ac[randFlexOption];
+				break;
+			case "alignSelf":
+				console.log("alignSelf");
+				document.getElementById('containerDiv').style.alignSelf = as[randFlexOption];
+				break;
+			case "flexGrow":
+				console.log("flexGrow");
+				document.getElementById('containerDiv').style.flexGrow = fg[randFlexOption];
+				break;
+			case "flexShrink":
+				console.log("flexShrink");
+				document.getElementById('containerDiv').style.flexShrink = fs[randFlexOption];
+				break;
+			case "flexBasis":
+				console.log("flexBasis");
+				document.getElementById('containerDiv').style.flexBasis = fb[randFlexOption];
+				break;
+			default:
+				console.log("Default used!");
+		}
 	}
 
+	let containerDivClasses = $('#containerDiv');
+	console.log(containerDivClasses);
+
 	$('#endGame').submit(function(event) {
-    event.preventDefault();
+		event.preventDefault();
+		gameGoing = false;
 		puzzleCompleted();
   });
 
@@ -275,28 +337,33 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 }
 
 function puzzleCompleted() {
-	let boardsChildNodes = document.getElementById('board').childNodes;
-	let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
-	let itemChildNodes = document.getElementById('item1').childNodes;
-	let containerDivChildNodes = document.getElementById('containerDiv').childNodes;
+	if(gameGoing === false) {
+		let boardsChildNodes = document.getElementById('board').childNodes;
+		let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
+		let itemChildNodes = document.getElementById(targettedElement).childNodes;
+		let containerDivChildNodes = document.getElementById('containerDiv').childNodes;
 
-	let containerNodeTests = testContainerNode(boardsChildNodes, gameBoardsChildNodes);
-	console.log(containerNodeTests);
-	let childNodeTests = testChildNodes(itemChildNodes, containerDivChildNodes);
-	console.log(childNodeTests);
+		let containerNodeTests = testContainerNode(boardsChildNodes, gameBoardsChildNodes);
+		console.log(containerNodeTests);
+		let childNodeTests = testChildNodes(itemChildNodes, containerDivChildNodes);
+		console.log(childNodeTests);
 
 
 
-	let testAgainstContainer = document.getElementById('gameBoard').childNodes.length;
-	let testAgainstChild = document.getElementById('containerDiv').childNodes.length;
-	let bothTests = testAgainstContainer + testAgainstChild;
-	bothTests *= 4;
-	let bothAnswers = containerNodeTests.concat(childNodeTests);
-	console.log(bothAnswers, bothTests);
+		let testAgainstContainer = document.getElementById('gameBoard').childNodes.length;
+		let testAgainstChild = document.getElementById('containerDiv').childNodes.length;
+		let bothTests = testAgainstContainer + testAgainstChild;
+		bothTests *= 4;
+		let bothAnswers = containerNodeTests.concat(childNodeTests);
+		console.log(bothAnswers, bothTests);
 
-	if(bothAnswers.length == bothTests) {
-		bothAnswers.every(checkPass);
-	}	
+		if(bothAnswers.length == bothTests) {
+			bothAnswers.every(checkPass);
+		}	
+	}
+	else {
+		console.log("gameGoing: ", gameGoing);
+	}
 }
 
 function checkPass(testItem) {
@@ -316,7 +383,7 @@ function checkPass(testItem) {
 
 
 
-let targettedElement;
+let targettedElement = 'board';
 let targettedElementsClass;
 let currentElement;
 let swappableId = ["item1", "item2", "item3", "item4", "item5"];
@@ -326,29 +393,30 @@ let iterator = 0;
 let iterator2 = 0;
 let iterator3 = 0;
 
+$("#board").on('click', function(event) {
+	event.preventDefault();
+	targettedElement = event.target.getAttribute('id');
+	elementSelector();
+})
+
+
 function elementSelector() {
-	$('#board').on('click', function(event) {
-		if(event.target.getAttribute('id') != "boardBackground") {
-			targettedElement = event.target.getAttribute('id');
-			targettedElementsClass = event.target.getAttribute('class');
-			currentElement = document.getElementById(targettedElement).classList;
-			elementValueUpdater();
-			document.getElementById(targettedElement).classList.add("pulse");
-			while(document.getElementsByClassName("pulse").length > 1) {
-				if(document.getElementsByClassName("pulse")[1].id != targettedElement) {
-					document.getElementsByClassName("pulse")[1].classList.remove("pulse");
-				}
-				else if(document.getElementsByClassName("pulse")[0].id != targettedElement) {
-					document.getElementsByClassName("pulse")[0].classList.remove("pulse");
-				}
-			}
-			console.log("ID:", targettedElement, "Classes:", targettedElementsClass);
+	console.log(targettedElement);
+	// targettedElement = event.target.getAttribute('id');
+	// targettedElementsClass = targettedElement.getAttribute('class');
+	currentElement = document.getElementById(targettedElement).classList;
+	elementValueUpdater();
+	currentElement.add("pulse");
+	while(document.getElementsByClassName("pulse").length > 1) {
+		if(document.getElementsByClassName("pulse")[1].id != targettedElement) {
+			document.getElementsByClassName("pulse")[1].classList.remove("pulse");
 		}
-		else {
-			console.log("nope!");
+		else if(document.getElementsByClassName("pulse")[0].id != targettedElement) {
+			document.getElementsByClassName("pulse")[0].classList.remove("pulse");
 		}
-	});
-} 
+	}
+	console.log("ID:", targettedElement, "Classes:", currentElement);
+}
 
 function elementValueUpdater() {
 	let testArr = [];
@@ -378,7 +446,7 @@ function watchAddElement(){
 			}
 			console.log("Largest element created!");
 		}
-		else if(targettedElement == undefined || targettedElement == null) {
+		else if(document.getElementById(targettedElement) == undefined || document.getElementById(targettedElement) == null) {
 			let divL = document.createElement('div');
 			divL.id = swappableId[iterator];
 			divL.classList.add("largestElement", "height:20%", "width:20%", "flex-direction:row", "flex-wrap:nowrap", "justify-content:flex-start", "align-items:stretch", "align-content:stretch", "align-self:auto", "order:0", "flex-grow:0", "flex-shrink:1", "flex-basis:auto");
@@ -389,6 +457,7 @@ function watchAddElement(){
 			}
 			console.log("Largest element created!");
 		}
+
 		else if(document.getElementById(targettedElement).classList.contains("largestElement")) {
 			let divM = document.createElement('div');
 			divM.id = swappableId2[iterator2];
@@ -434,6 +503,7 @@ function watchAddElement(){
 		event.preventDefault();
 		isThereAlreadyAnElement = "no";
 		$('#board').html("");
+		$('#gameBoard').html("");
 	});
 }
 
@@ -505,9 +575,44 @@ function elementResizer(){
 	});
 }
 
+let itt = 0;
+
 function flexDirectionController(){
 	$('#flexDirection').on('click', function(e){
 		e.preventDefault();
+
+		// let fdArray = ["flex-direction:row", "flex-direction:row-reverse", "flex-direction:column", "flex-direction:column-reverse"];
+		// let fdArray1 = ["row", "row-reverse", "column", "column-reverse"];
+
+		// document.getElementById(targettedElement).style.flexDirection = fdArray1[itt];
+		// itt++;
+
+		// switch(currentElement.contains) {
+		// 	case "flex-direction:column-reverse":
+		// 		currentElement.replace('flex-direction:column-reverse', 'flex-direction:row');
+		// 		document.getElementById(targettedElement).style.flexDirection = "row";
+		// 		console.log("flex-direction: row");
+		// 		break;
+		// 	case "flex-direction:row":
+		// 		currentElement.replace('flex-direction:row', 'flex-direction:row-reverse');
+		// 		document.getElementById(targettedElement).style.flexDirection = "row-reverse";
+		// 		console.log("flex-direction: row-reverse");
+		// 		break;
+		// 	case "flex-direction:row-reverse":
+		// 		currentElement.replace('flex-direction:row-reverse', 'flex-direction:column');
+		// 		document.getElementById(targettedElement).style.flexDirection = "column";
+		// 		console.log("flex-direction: column");
+		// 		break;
+		// 	case "flex-direction:column":
+		// 		currentElement.replace('flex-direction:column', 'flex-direction:column-reverse');
+		// 		document.getElementById(targettedElement).style.flexDirection = "column-reverse";
+		// 		console.log("flex-direction: column-reverse");
+		// 		break;
+		// 	default: 
+		// 		console.log("error in flexDirection");
+		// }
+
+
 		if(currentElement.contains('flex-direction:column-reverse')) {
 			currentElement.replace('flex-direction:column-reverse', 'flex-direction:row');
 			document.getElementById(targettedElement).style.flexDirection = "row";
@@ -846,7 +951,7 @@ function flexBasisController(){
 }
 
 watchAddElement();
-elementSelector();
+// elementSelector();
 elementResizer();
 flexDirectionController();
 flexWrapController();
@@ -862,6 +967,11 @@ flexBasisController();
 $('.flexButton').on('click', function() {
 	elementValueUpdater();
 	puzzleCompleted();
+});
+
+$(document).ready(function() {
+	targettedElement = "board";
+	document.getElementById('board').classList.add("pulse");	
 });
 
 //have default values highlighted green?
