@@ -69,9 +69,9 @@ $(()=>{
 
 
 startGame();
-let gameCompleted;
+let gameCompleted; //Flexbox Gameboard?
 
-function startGame() {
+function startGame() { //add slight border to left side to give sense of perspective for object you're working in
   $('#startGame').submit(function(event) {
 		event.preventDefault();
 		gameGoing = true;
@@ -84,7 +84,7 @@ function startGame() {
   });
 }
 
-function levelRandomizer() {
+function levelRandomizer() { //add diversity at least to where main container box appears
 	let swappableGameIds = ["gameItem1", "gameItem2", "gameItem3", "gameItem4", "gameItem5"];
 	
 	// let randFlexNumber = Math.floor(Math.random() * 10);
@@ -98,7 +98,7 @@ function levelRandomizer() {
 	document.getElementById('containerDiv').style.height = percentStorage[randPercent];
 	document.getElementById('containerDiv').style.width = percentStorage[randPercent];
 	for(i=0;i<randMediums;i++) {
-		document.getElementById('containerDiv').insertAdjacentHTML('beforeend', `<div id=${swappableGameIds} class="mediumDiv"></div>`);
+		document.getElementById('containerDiv').insertAdjacentHTML('beforeend', `<div id=${swappableGameIds[i]} class="mediumDiv"></div>`);
 	}
 
 	let randFlexNumber = Math.floor(Math.random() * 9);
@@ -169,7 +169,6 @@ function levelRandomizer() {
 
 	$('#endGame').submit(function(event) {
 		event.preventDefault();
-		gameGoing = false;
 		puzzleCompleted();
   });
 
@@ -200,11 +199,8 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 	
 
 	for(i=0;i<itemChildNodes.length;i++) {
-		let maxCorrectAnswer = containerDivChildNodes[i].offsetLeft + 10;
-		let minCorrectAnswer = containerDivChildNodes[i].offsetLeft - 10;
 		console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
-
-		if(itemChildNodes[i].offsetLeft <= maxCorrectAnswer && itemChildNodes[i].offsetLeft >= minCorrectAnswer) {
+		if(itemChildNodes[i].offsetLeft <= containerDivChildNodes[i].offsetLeft + 10 && itemChildNodes[i].offsetLeft >= containerDivChildNodes[i].offsetLeft - 10) {
 			console.log("Left Pass!");
 			leftTest.push("Pass");
 		}
@@ -212,14 +208,10 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 			console.log("Left Fail!");
 			leftTest.push("Fail");
 		}
-	}
 
-	for(i=0;i<itemChildNodes.length;i++) {
-		let maxCorrectAnswer = containerDivChildNodes[i].offsetTop + 60;
-		let minCorrectAnswer = containerDivChildNodes[i].offsetTop - 60;
+
 		console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
-
-		if(itemChildNodes[i].offsetTop <= maxCorrectAnswer && itemChildNodes[i].offsetTop >= minCorrectAnswer) {
+		if(itemChildNodes[i].offsetTop <= containerDivChildNodes[i].offsetTop + 60 && itemChildNodes[i].offsetTop >= containerDivChildNodes[i].offsetTop - 60) {
 			console.log("Top Pass!");
 			topTest.push("Pass");
 		}
@@ -227,14 +219,10 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 			console.log("Top Fail!");
 			topTest.push("Fail");
 		}
-	}
 
-	for(i=0;i<itemChildNodes.length;i++) {
-		let maxCorrectAnswer = containerDivChildNodes[i].offsetWidth + 10;
-		let minCorrectAnswer = containerDivChildNodes[i].offsetWidth - 10;
+
 		console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
-
-		if(itemChildNodes[i].offsetWidth <= maxCorrectAnswer && itemChildNodes[i].offsetWidth >= minCorrectAnswer) {
+		if(itemChildNodes[i].offsetWidth <= containerDivChildNodes[i].offsetWidth + 10 && itemChildNodes[i].offsetWidth >= containerDivChildNodes[i].offsetWidth - 10) {
 			console.log("Width Pass!");
 			widthTest.push("Pass");
 		}
@@ -242,14 +230,10 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 			console.log("Width Fail!");
 			widthTest.push("Fail");
 		}
-	}
 
-	for(i=0;i<itemChildNodes.length;i++) {
-		let maxCorrectAnswer = containerDivChildNodes[i].offsetHeight + 10;
-		let minCorrectAnswer = containerDivChildNodes[i].offsetHeight - 10;
+
 		console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
-
-		if(itemChildNodes[i].offsetHeight <= maxCorrectAnswer && itemChildNodes[i].offsetHeight >= minCorrectAnswer) {
+		if(itemChildNodes[i].offsetHeight <= containerDivChildNodes[i].offsetHeight + 10 && itemChildNodes[i].offsetHeight >= containerDivChildNodes[i].offsetHeight - 10) {
 			console.log("Height Pass!");
 			heightTest.push("Pass");
 		}
@@ -257,7 +241,22 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 			console.log("Height Fail!");
 			heightTest.push("Fail");
 		}
+
+
+		if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
+			document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid cyan";
+			document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid cyan";
+			document.getElementById(itemChildNodes[i].id).style.borderRight = "6px solid cyan";
+			document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid cyan";
+		}
+		else {
+			document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px dashed green";
+			document.getElementById(itemChildNodes[i].id).style.borderTop = "5px dashed green";
+			document.getElementById(itemChildNodes[i].id).style.borderRight = "6px dashed green";
+			document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px dashed green";
+		}
 	}
+
 
 	let testAnswers = leftTest.concat(topTest, heightTest, widthTest);
 
@@ -272,11 +271,8 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetLeft + 10;
-		let minCorrectAnswer = gameBoardsChildNodes[i].offsetLeft - 10;
-		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft);
-
-		if(boardsChildNodes[i].offsetLeft <= maxCorrectAnswer && boardsChildNodes[i].offsetLeft >= minCorrectAnswer) {
+		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); //always logging "8 0"
+		if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 10 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 10) {
 			console.log("Left Pass!");
 			leftTest.push("Pass");
 		}
@@ -284,14 +280,10 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			console.log("Left Fail!");
 			leftTest.push("Fail");
 		}
-	}
+	
 
-	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetTop + 60;
-		let minCorrectAnswer = gameBoardsChildNodes[i].offsetTop - 60;
 		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
-
-		if(boardsChildNodes[i].offsetTop <= maxCorrectAnswer && boardsChildNodes[i].offsetTop >= minCorrectAnswer) {
+		if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 60 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 60) {
 			console.log("Top Pass!");
 			topTest.push("Pass");
 		}
@@ -299,14 +291,10 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			console.log("Top Fail!");
 			topTest.push("Fail");
 		}
-	}
+	
 
-	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetWidth + 10;
-		let minCorrectAnswer = gameBoardsChildNodes[i].offsetWidth - 10;
 		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
-
-		if(boardsChildNodes[i].offsetWidth <= maxCorrectAnswer && boardsChildNodes[i].offsetWidth >= minCorrectAnswer) {
+		if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 10 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 10) {
 			console.log("Width Pass!");
 			widthTest.push("Pass");
 		}
@@ -314,20 +302,30 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			console.log("Width Fail!");
 			widthTest.push("Fail");
 		}
-	}
+	
 
-	for(i=0;i<boardsChildNodes.length;i++) {
-		let maxCorrectAnswer = gameBoardsChildNodes[i].offsetHeight + 10;
-		let minCorrectAnswer = gameBoardsChildNodes[i].offsetHeight - 10;
 		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
-
-		if(boardsChildNodes[i].offsetHeight <= maxCorrectAnswer && boardsChildNodes[i].offsetHeight >= minCorrectAnswer) {
+		if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 10 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 10) {
 			console.log("Height Pass!");
 			heightTest.push("Pass");
 		}
 		else {
 			console.log("Height Fail!");
 			heightTest.push("Fail");
+		}
+
+
+		if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
+			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid cyan";
+			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid cyan";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "6px solid cyan";
+			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid cyan";
+		}
+		else {
+			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px dashed green";
+			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px dashed green";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "6px dashed green";
+			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px dashed green";
 		}
 	}
 
@@ -336,8 +334,8 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	return testAnswers;
 }
 
+
 function puzzleCompleted() {
-	if(gameGoing === false) {
 		let boardsChildNodes = document.getElementById('board').childNodes;
 		let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
 		let itemChildNodes = document.getElementById(targettedElement).childNodes;
@@ -358,21 +356,19 @@ function puzzleCompleted() {
 		console.log(bothAnswers, bothTests);
 
 		if(bothAnswers.length == bothTests) {
-			bothAnswers.every(checkPass);
-		}	
-	}
-	else {
-		console.log("gameGoing: ", gameGoing);
-	}
-}
+			let testerr = bothAnswers.every(testItem => {
+				if(testItem === "Fail") {
+					return false;
+				}
+				else {
+					return true;
+				}
+			})
 
-function checkPass(testItem) {
-	if(testItem == "Fail") {
-		console.log("Failed Tests");
-	}
-	else {
-		console.log("Winner!");
-	}
+			if(testerr == true) {
+				console.log("WWWWIIIINNNNEEEERRRRR!");
+			}
+		}	
 }
 
 
@@ -965,7 +961,9 @@ flexShrinkController();
 flexBasisController();
 
 $('.flexButton').on('click', function() {
+	console.log("Flex button watcher working!");
 	elementValueUpdater();
+	// setTimeout(puzzleCompleted(), 1000)
 	puzzleCompleted();
 });
 
