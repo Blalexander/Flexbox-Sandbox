@@ -67,7 +67,8 @@ router.put('/:id', jwtAuth, jsonParser, (req, res)=>{
 router.get('/by-user/:user_id', (req, res) => {
   return Entry.find({user: req.params.user_id})
     .then(entries => {
-      res.json(entries);
+      let revisedEntries = entries.map(entry => {return entry.customBackground})
+      res.json(revisedEntries);
     })
     .catch(err => res.status(500).json({message: 'Internal server error when getting entries by user id.'}));
 });

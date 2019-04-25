@@ -58,10 +58,11 @@ $(()=>{
 		// getEntry(localStorage.entryId);
 		// watchEditForm();
 		watchLogoutButton();
-	}else{
-		// if not logged in and player accesses this page, redirect to login.
-		location.replace("/index.html");
 	}
+	// else{
+	// 	// if not logged in and player accesses this page, redirect to login.
+	// 	location.replace("/index.html");
+	// }
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,7 +75,6 @@ let gameCompleted; //Flexbox Gameboard?
 function startGame() { //add slight border to left side to give sense of perspective for object you're working in
   $('#startGame').submit(function(event) {
 		event.preventDefault();
-		gameGoing = true;
 		$('#gameBoard').html("");
 		$('#board').html("");		
 		targettedElement = "board";
@@ -335,7 +335,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 }
 
 
-function puzzleCompleted() {
+function puzzleCompleted() { //flash gold maybe when both tests are correct?
 		let boardsChildNodes = document.getElementById('board').childNodes;
 		let gameBoardsChildNodes = document.getElementById('gameBoard').childNodes;
 		let itemChildNodes = document.getElementById(targettedElement).childNodes;
@@ -972,9 +972,16 @@ $(document).ready(function() {
 	document.getElementById('board').classList.add("pulse");	
 });
 
+
+
+//-------------------------things still needing completion----------------------------------------
+//background saved to acc-------------------------------
+//user can retrieve backgrounds previously saved
+//flex options used on background saved to acc
+//score saved to acc
+
+
+//-------------------------styling options for the finale--------------------------------------
 //have default values highlighted green?
 //have listener for if button text changes, button flashes red?
-//for the testing section, replace background image with test template and then record proper config values as the correct answer
 //hint button to hightlight correct answer buttons
-//replace method on buttons 
-//allow user to upload images for background to match???

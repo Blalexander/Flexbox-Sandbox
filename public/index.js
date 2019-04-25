@@ -18,13 +18,13 @@ function watchDeleteButton(){
 	});
 }
 
-function watchEditButton(){
-	$('.edit').unbind('click').bind('click', function(e){
-		let entryId = $(this).attr('data-entry-id');
-		localStorage.entryId = entryId;
-		window.location.replace('/sandbox.html');
-	});
-}
+// function watchEditButton(){
+// 	$('.edit').unbind('click').bind('click', function(e){
+// 		let entryId = $(this).attr('data-entry-id');
+// 		localStorage.entryId = entryId;
+// 		window.location.replace('/sandbox.html');
+// 	});
+// }
 
 function buttonSection(id){
 	return `
@@ -44,18 +44,7 @@ function formatDate(date){
 }
 
 function displayEntry(entry){
-	$('.entries').append(`
-		<li>
- 			<p class="date"><em>${formatDate(entry.date)}</em></p>
- 			<h4>Working On:</h4> 
- 			<p>${entry.workingOn}</p>
- 			<h4>Feelings On It:</h4>
- 			<p> ${entry.feelings}</p>
- 			<h4>Looking Forward To:</h4>
- 			<p>${entry.lookingForward}</p>
- 			${buttonSection(entry._id)}
- 		</li>
-	`);
+	$('#myBackgroundsDropdown').append(`<option value=${entry}>${entry}</option>`);
 }
 
 function watchLogoutButton(){
@@ -78,20 +67,20 @@ function changeNavLinks(){
 }
 
 function displayHomePage(data){
-  changeNavLinks();
-  window.location.replace("/sandbox.html");
+  // changeNavLinks();
+	if(window.location != "http://localhost:8080/sandbox.html") {
+		window.location.replace("/sandbox.html")
+	}
+
 	// $('#login').remove();
 	// $('main').fadeOut();
 	// $('body').append('<main><ul class="entries"></ul></main>');
 
 	if(data.length===0){
-		$('.entries').append("<li class='no-entries'><h3>You have no journal entries yet. Click new entry to get started.</h3>");
+		$('.entries').append("<li class='no-entries'><h3>You have no submitted backgrounds yet!</h3>");
 	} else{
 		data.forEach(entry=>displayEntry(entry));
-		watchEditButton();
-		watchDeleteButton();		
 	}
-	
 }
 
 function displayError(){
@@ -111,6 +100,7 @@ function getEntries(user_id){
     }
     throw new Error(res.statusText);
 	}).then(resJson=>{
+		// window.location.replace("/sandbox.html");
 		displayHomePage(resJson);
 	}).catch(err=>{
 		displayError();

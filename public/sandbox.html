@@ -9,6 +9,8 @@
   <body>
  	 <nav>
     <h1 class="nav-heading">Flexbox Sandbox</h1>
+    <h2 id="currentScore"></h2>
+    <h2 id="topScore"></h2>
     <a class="logout-btn" href="index.html"><button>Log Out</button></a>
     <form id="startGame">
       <button id="startGameButton" type="submit">Start Game!</button>
@@ -46,6 +48,9 @@
       <form id="clearBackground">
         <button type="submit">Clear custom background</button>
       </form>
+      <form id="myBackgrounds">
+        <select id="myBackgroundsDropdown"></select>
+      </form>
     </section>
  	 </nav>
     <main>
@@ -58,6 +63,7 @@
 		  src="https://code.jquery.com/jquery-3.3.1.min.js"
 		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		  crossorigin="anonymous"></script>
-		    <script type="text/javascript" src="sandbox.js"></script>
+        <script type="text/javascript" src="sandbox.js"></script>
+        <script type="text/javascript" src="index.js"></script>        
  	</body>
 </html>
