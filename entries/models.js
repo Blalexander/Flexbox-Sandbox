@@ -30,4 +30,30 @@ entrySchema.virtual('username').get(function(){
 
 const Entry = mongoose.model('Entry', entrySchema);
 
-module.exports = {Entry};
+const scoreSchema = mongoose.Schema({
+  highScore: {
+    type: Number,
+    required: true
+  },  
+  // upload: {
+  //   type: String,
+  //   required: false
+  // },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
+});
+
+scoreSchema.pre('findOne', function(next) {
+  this.populate('user');
+  next();
+});
+
+scoreSchema.virtual('username').get(function(){
+  return this.user.username;
+});
+
+const Scores = mongoose.model('Scores', scoreSchema);
+
+module.exports = {Entry, Scores};

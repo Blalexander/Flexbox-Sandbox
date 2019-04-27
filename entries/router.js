@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const {Entry} = require('./models');
+const {Scores} = require('./models');
 const {User} = require('../users/models');
 const jwtAuth = passport.authenticate('jwt', { session: false });
 const router = express.Router();
@@ -29,6 +30,28 @@ router.post('/', jwtAuth, jsonParser, (req, res)=>{
     .catch(err => {
       console.error(err);
       res.status(500).json({ message: "Internal server error when posting new entry." });
+    });        
+});
+
+router.post('/scores', jwtAuth, jsonParser, (req, res)=>{
+  const requiredFields = ['scoreTracker'];
+  requiredFields.forEach(field => {
+    if(!(field in req.body)){
+      const msg = `Missing ${field} in request body.`;
+      console.error(msg);
+      return res.status(400).send(msg);
+    }
+  });
+  Scores
+    .create({
+      highScore: req.body.scoreTracker,
+      // upload: req.body.upload,
+      user: req.user.id
+    })
+    .then(entry=>res.status(201).json(entry))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error when posting new score." });
     });        
 });
 
@@ -72,6 +95,51 @@ router.get('/by-user/:user_id', (req, res) => {
     })
     .catch(err => res.status(500).json({message: 'Internal server error when getting entries by user id.'}));
 });
+
+router.get('/scores/:user_id', (req, res) => {
+  return Scores.find({user: req.params.user_id})
+    .then(scores => {
+      let revisedScores = scores.map(score => {return score.highScore})
+      res.json(revisedScores);
+    })
+    .catch(err => res.status(500).json({message: 'Internal server error when getting scores by user id.'}));
+});
+
+
+
+router.put('/:id', jwtAuth, jsonParser, (req, res)=>{
+  // const requiredFields = ['customBackground'];
+  // requiredFields.forEach(field => {
+  //   if(!(field in req.body)){
+  //     const msg = `Missing ${field} in request body.`;
+  //     console.error(msg);
+  //     return res.status(400).send(msg);
+  //   }
+  // });
+
+  // const toUpdate = {};
+  // const updatableFields = ['customBackground'];
+  // updatableFields.forEach(field=>{
+  //   if(field in req.body){
+  //     toUpdate[field] = req.body[field];
+  //   }
+  // });
+
+  Entry
+    .findOneAndUpdate({_id: req.params.id}, {$set: req.body.scoreTracker})
+    .then(updatedEntry=>{
+      console.log(`Updated item with id ${req.params.id}.`);
+      res.status(200).json({
+        customBackground: updatedEntry.customBackground//left off here
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error with updating entry." });
+    });
+});
+
+
 
 router.get('/:id', (req, res) => {
   return Entry.findById(req.params.id)

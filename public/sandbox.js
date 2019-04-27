@@ -30,6 +30,31 @@ function postEntry(entry){
 	});
 }
 
+function postScore(userScore){
+	fetch("/entries/scores", {
+		method: "POST",
+		body: JSON.stringify(userScore),
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer '+localStorage.authToken
+		}
+	})
+	.then(res=> {
+		if(res.ok){
+			return res.json;
+		}
+		throw new Error(res.statusText);
+	})
+	.then(data=>{
+		console.log(data); //data turns out to be "json()", only readable in networking tab
+		// location.replace("/index.html");
+	})
+	.catch(err=>{
+		// displayError();
+		console.log(err);
+	});
+}
+
 watchNewEntryForm();
 clearCustomBackground();
 
@@ -71,6 +96,7 @@ $(()=>{
 
 startGame();
 let gameCompleted; //Flexbox Gameboard?
+let scoreTracker = 0;
 
 function startGame() { //add slight border to left side to give sense of perspective for object you're working in
   $('#startGame').submit(function(event) {
@@ -366,6 +392,9 @@ function puzzleCompleted() { //flash gold maybe when both tests are correct?
 			})
 
 			if(testerr == true) {
+				scoreTracker++;
+				postScore({scoreTracker, user: localStorage.authToken});
+				document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 				console.log("WWWWIIIINNNNEEEERRRRR!");
 			}
 		}	

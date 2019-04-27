@@ -83,12 +83,18 @@ function displayHomePage(data){
 	}
 }
 
+function displayScores(data) {
+	document.getElementById('topScore').innerHTML = "High Score: " + data;
+}
+
 function displayError(){
 	$('.entry').remove();
 	$("form h1").after(`<p class="error">Problem with your login information. Please try again.</p>`);
 }
 
 function getEntries(user_id){
+	getScores(user_id);
+	
 	fetch(`/entries/by-user/${user_id}`, {
 		headers: {
 			"Authorization": "Bearer "+localStorage.authToken
@@ -108,6 +114,26 @@ function getEntries(user_id){
 	});
 }
 
+function getScores(user_id){
+	fetch(`/entries/scores/${user_id}`, {
+		headers: {
+			"Authorization": "Bearer "+localStorage.authToken
+		}
+	})
+	.then(res=>{
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error(res.statusText);
+	}).then(resJson=>{
+		// window.location.replace("/sandbox.html");
+		displayScores(resJson);
+	}).catch(err=>{
+		displayError();
+		console.error(err);
+	});
+}
+
 function getUserId(user){
 	fetch(`/users/id/${user.username}`)
 	.then(res=>{
@@ -119,6 +145,7 @@ function getUserId(user){
 	.then(user_id=>{
 		localStorage.user_id = user_id;
 		getEntries(user_id);
+		// getScores(user_id);
 	}).catch(err=>{
 		console.error(err);
 	});
