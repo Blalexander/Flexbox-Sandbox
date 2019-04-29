@@ -55,7 +55,7 @@ router.post('/scores', jwtAuth, jsonParser, (req, res)=>{
     });        
 });
 
-router.put('/:id', jwtAuth, jsonParser, (req, res)=>{
+router.put('/:user_id', jwtAuth, jsonParser, (req, res)=>{
   const requiredFields = ['customBackground'];
   requiredFields.forEach(field => {
     if(!(field in req.body)){
@@ -74,7 +74,7 @@ router.put('/:id', jwtAuth, jsonParser, (req, res)=>{
   });
 
   Entry
-    .findOneAndUpdate({_id: req.params.id}, {$set: toUpdate})
+    .findOneAndUpdate({"user": req.params.user_id}, {$set: toUpdate})
     .then(updatedEntry=>{
       console.log(`Updated item with id ${req.params.id}.`);
       res.status(200).json({
@@ -92,9 +92,9 @@ router.put('/scores/:user_id', jwtAuth, jsonParser, (req, res)=>{
     .findOneAndUpdate({"user": req.params.user_id}, {$set: {highScore: req.body.scoreTracker}})
     .then(updatedScores=>{
       console.log(`Updated item with id ${req.params.user_id}.`);
-      res.status(200).json(
-        updatedScores
-      );
+      res.status(200).json({
+        highScore: updatedScores.highScore
+      });
     })
     .catch(err => {
       console.error(err);
