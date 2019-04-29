@@ -80,6 +80,29 @@ function putScore(userScore){
 	});
 }
 
+function deleteScore(){
+	fetch(`/entries/scores/${localStorage.user_id}`, {
+		method: "DELETE",
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer '+localStorage.authToken
+		}
+	})
+	.then(res=> {
+		if(res.ok){
+			return res.json;
+		}
+		throw new Error(res.statusText);
+	})
+	.then(() => {
+		highestScore = 0;
+	})
+	.catch(err=>{
+		// displayError();
+		console.log(err);
+	});
+}
+
 watchNewEntryForm();
 clearCustomBackground();
 
@@ -219,12 +242,17 @@ function levelRandomizer() { //add diversity at least to where main container bo
 	let containerDivClasses = $('#containerDiv');
 	console.log(containerDivClasses);
 
-	$('#endGame').submit(function(event) {
-		event.preventDefault();
-		puzzleCompleted();
-  });
+	// $('#resetScore').submit(function(event) {
+	// 	event.preventDefault();
+	// 	deleteScore();
+  // });
 
 }
+
+$('#resetScore').submit(function(event) {
+	event.preventDefault();
+	deleteScore();
+});
 
 // function levelOne() {
 // 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
@@ -415,20 +443,21 @@ function puzzleCompleted() { //flash gold maybe when both tests are correct?
 				else {
 					return true;
 				}
-			})
+			}) //user can change flex options to wrong then right and it will keep adding onto score
 
 			if(testerr == true) {
 				scoreTracker++;
-				if(scoreTracker > highestScore) {
+				if(highestScore == 0) {
+					highestScore = scoreTracker;
+					postScore({scoreTracker, user: localStorage.authToken});
+				}
+				else {
 					highestScore = scoreTracker;
 					putScore({scoreTracker, user: localStorage.authToken});
 				}
 
 				displayScores(highestScore);
 
-				if(highestScore == 1) {
-					postScore({scoreTracker, user: localStorage.authToken});
-				}
 				document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 				console.log("WWWWIIIINNNNEEEERRRRR!");
 			}

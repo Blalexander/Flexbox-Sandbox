@@ -85,7 +85,9 @@ function displayHomePage(data){
 }
 
 function displayScores(data) {
-	highestScore = data;
+	if(data != 0) {
+		highestScore = data;
+	}
 	// console.log("data: ", data)
 	let scoreItem = document.getElementById('topScore').innerHTML = "High Score: " + data;
 	// document.getElementById('topScore').append(data);

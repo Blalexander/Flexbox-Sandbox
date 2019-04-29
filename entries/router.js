@@ -144,4 +144,16 @@ router.delete('/:id', jwtAuth, (req, res)=>{
     });
 });
 
+router.delete('/scores/:id', jwtAuth, (req, res)=>{
+  Scores.deleteOne({user: req.params.id})
+    .then(()=>{
+      console.log(`Deleted score with id ${req.params.id}.`);
+      res.status(204).end();
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error when deleting entry." });
+    });
+});
+
 module.exports = {router};
