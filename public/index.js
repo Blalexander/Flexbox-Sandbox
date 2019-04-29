@@ -67,6 +67,7 @@ function changeNavLinks(){
 }
 
 function displayHomePage(data){
+	getScores(localStorage.user_id);
   // changeNavLinks();
 	if(window.location != "http://localhost:8080/sandbox.html") {
 		window.location.replace("/sandbox.html")
@@ -84,7 +85,11 @@ function displayHomePage(data){
 }
 
 function displayScores(data) {
-	document.getElementById('topScore').innerHTML = "High Score: " + data;
+	highestScore = data;
+	// console.log("data: ", data)
+	let scoreItem = document.getElementById('topScore').innerHTML = "High Score: " + data;
+	// document.getElementById('topScore').append(data);
+	return scoreItem;
 }
 
 function displayError(){
@@ -93,26 +98,30 @@ function displayError(){
 }
 
 function getEntries(user_id){
-	getScores(user_id);
+	// getScores(user_id);
 	
 	fetch(`/entries/by-user/${user_id}`, {
 		headers: {
 			"Authorization": "Bearer "+localStorage.authToken
 		}
 	})
-	.then(res=>{
+	.then(res => {
     if (res.ok) {
       return res.json();
     }
     throw new Error(res.statusText);
-	}).then(resJson=>{
+	})
+	.then(resJson=>{
 		// window.location.replace("/sandbox.html");
 		displayHomePage(resJson);
-	}).catch(err=>{
+	})
+	.catch(err=>{
 		displayError();
 		console.error(err);
 	});
 }
+
+let highestScore = 0;
 
 function getScores(user_id){
 	fetch(`/entries/scores/${user_id}`, {
@@ -123,12 +132,17 @@ function getScores(user_id){
 	.then(res=>{
     if (res.ok) {
       return res.json();
-    }
-    throw new Error(res.statusText);
-	}).then(resJson=>{
+		}
+		throw new Error(res.statusText);
+    // displayScores(res.json());
+	})
+	.then(resJson => {
 		// window.location.replace("/sandbox.html");
 		displayScores(resJson);
-	}).catch(err=>{
+		// onloadScore = await resJson;
+		// return onloadScore
+	})
+	.catch(err=>{
 		displayError();
 		console.error(err);
 	});
@@ -142,11 +156,15 @@ function getUserId(user){
     }
     throw new Error(res.statusText);
 	})
-	.then(user_id=>{
+	.then(user_id => {
 		localStorage.user_id = user_id;
 		getEntries(user_id);
-		// getScores(user_id);
-	}).catch(err=>{
+	})
+	// .then(() => {
+	// 	getScores(localStorage.user_id)
+	// 	// console.log("working")
+	// })
+	.catch(err=>{
 		console.error(err);
 	});
 }

@@ -55,6 +55,31 @@ function postScore(userScore){
 	});
 }
 
+function putScore(userScore){
+	fetch(`/entries/scores/${localStorage.user_id}`, {
+		method: "PUT",
+		body: JSON.stringify(userScore),
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer '+localStorage.authToken
+		}
+	})
+	.then(res=> {
+		if(res.ok){
+			return res.json;
+		}
+		throw new Error(res.statusText);
+	})
+	.then(data=>{
+		console.log(data); //data turns out to be "json()", only readable in networking tab
+		// location.replace("/index.html");
+	})
+	.catch(err=>{
+		// displayError();
+		console.log(err);
+	});
+}
+
 watchNewEntryForm();
 clearCustomBackground();
 
@@ -101,6 +126,7 @@ let scoreTracker = 0;
 function startGame() { //add slight border to left side to give sense of perspective for object you're working in
   $('#startGame').submit(function(event) {
 		event.preventDefault();
+		document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 		$('#gameBoard').html("");
 		$('#board').html("");		
 		targettedElement = "board";
@@ -226,7 +252,7 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 
 	for(i=0;i<itemChildNodes.length;i++) {
 		console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
-		if(itemChildNodes[i].offsetLeft <= containerDivChildNodes[i].offsetLeft + 10 && itemChildNodes[i].offsetLeft >= containerDivChildNodes[i].offsetLeft - 10) {
+		if(itemChildNodes[i].offsetLeft <= containerDivChildNodes[i].offsetLeft + 100 && itemChildNodes[i].offsetLeft >= containerDivChildNodes[i].offsetLeft - 100) {
 			console.log("Left Pass!");
 			leftTest.push("Pass");
 		}
@@ -237,7 +263,7 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 
 
 		console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
-		if(itemChildNodes[i].offsetTop <= containerDivChildNodes[i].offsetTop + 60 && itemChildNodes[i].offsetTop >= containerDivChildNodes[i].offsetTop - 60) {
+		if(itemChildNodes[i].offsetTop <= containerDivChildNodes[i].offsetTop + 100 && itemChildNodes[i].offsetTop >= containerDivChildNodes[i].offsetTop - 100) {
 			console.log("Top Pass!");
 			topTest.push("Pass");
 		}
@@ -248,7 +274,7 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 
 
 		console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
-		if(itemChildNodes[i].offsetWidth <= containerDivChildNodes[i].offsetWidth + 10 && itemChildNodes[i].offsetWidth >= containerDivChildNodes[i].offsetWidth - 10) {
+		if(itemChildNodes[i].offsetWidth <= containerDivChildNodes[i].offsetWidth + 100 && itemChildNodes[i].offsetWidth >= containerDivChildNodes[i].offsetWidth - 100) {
 			console.log("Width Pass!");
 			widthTest.push("Pass");
 		}
@@ -259,7 +285,7 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 
 
 		console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
-		if(itemChildNodes[i].offsetHeight <= containerDivChildNodes[i].offsetHeight + 10 && itemChildNodes[i].offsetHeight >= containerDivChildNodes[i].offsetHeight - 10) {
+		if(itemChildNodes[i].offsetHeight <= containerDivChildNodes[i].offsetHeight + 100 && itemChildNodes[i].offsetHeight >= containerDivChildNodes[i].offsetHeight - 100) {
 			console.log("Height Pass!");
 			heightTest.push("Pass");
 		}
@@ -298,7 +324,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 
 	for(i=0;i<boardsChildNodes.length;i++) {
 		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); //always logging "8 0"
-		if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 10 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 10) {
+		if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 100 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 100) {
 			console.log("Left Pass!");
 			leftTest.push("Pass");
 		}
@@ -309,7 +335,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	
 
 		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
-		if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 60 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 60) {
+		if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 100 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 100) {
 			console.log("Top Pass!");
 			topTest.push("Pass");
 		}
@@ -320,7 +346,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	
 
 		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
-		if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 10 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 10) {
+		if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 100 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 100) {
 			console.log("Width Pass!");
 			widthTest.push("Pass");
 		}
@@ -331,7 +357,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	
 
 		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
-		if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 10 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 10) {
+		if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 100 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 100) {
 			console.log("Height Pass!");
 			heightTest.push("Pass");
 		}
@@ -393,7 +419,16 @@ function puzzleCompleted() { //flash gold maybe when both tests are correct?
 
 			if(testerr == true) {
 				scoreTracker++;
-				postScore({scoreTracker, user: localStorage.authToken});
+				if(scoreTracker > highestScore) {
+					highestScore = scoreTracker;
+					putScore({scoreTracker, user: localStorage.authToken});
+				}
+
+				displayScores(highestScore);
+
+				if(highestScore == 1) {
+					postScore({scoreTracker, user: localStorage.authToken});
+				}
 				document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 				console.log("WWWWIIIINNNNEEEERRRRR!");
 			}
@@ -999,6 +1034,7 @@ $('.flexButton').on('click', function() {
 $(document).ready(function() {
 	targettedElement = "board";
 	document.getElementById('board').classList.add("pulse");	
+	// console.log(onloadScore);
 });
 
 
@@ -1014,3 +1050,4 @@ $(document).ready(function() {
 //have default values highlighted green?
 //have listener for if button text changes, button flashes red?
 //hint button to hightlight correct answer buttons
+//minimalist styling

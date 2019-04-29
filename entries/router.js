@@ -87,6 +87,22 @@ router.put('/:id', jwtAuth, jsonParser, (req, res)=>{
     });
 });
 
+router.put('/scores/:user_id', jwtAuth, jsonParser, (req, res)=>{
+  Scores
+    .findOneAndUpdate({"user": req.params.user_id}, {$set: {highScore: req.body.scoreTracker}})
+    .then(updatedScores=>{
+      console.log(`Updated item with id ${req.params.user_id}.`);
+      res.status(200).json(
+        updatedScores
+      );
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error with updating scores." });
+    });
+});
+
+
 router.get('/by-user/:user_id', (req, res) => {
   return Entry.find({user: req.params.user_id})
     .then(entries => {
@@ -101,42 +117,9 @@ router.get('/scores/:user_id', (req, res) => {
     .then(scores => {
       let revisedScores = scores.map(score => {return score.highScore})
       res.json(revisedScores);
+      // res.json(scores)
     })
     .catch(err => res.status(500).json({message: 'Internal server error when getting scores by user id.'}));
-});
-
-
-
-router.put('/:id', jwtAuth, jsonParser, (req, res)=>{
-  // const requiredFields = ['customBackground'];
-  // requiredFields.forEach(field => {
-  //   if(!(field in req.body)){
-  //     const msg = `Missing ${field} in request body.`;
-  //     console.error(msg);
-  //     return res.status(400).send(msg);
-  //   }
-  // });
-
-  // const toUpdate = {};
-  // const updatableFields = ['customBackground'];
-  // updatableFields.forEach(field=>{
-  //   if(field in req.body){
-  //     toUpdate[field] = req.body[field];
-  //   }
-  // });
-
-  Entry
-    .findOneAndUpdate({_id: req.params.id}, {$set: req.body.scoreTracker})
-    .then(updatedEntry=>{
-      console.log(`Updated item with id ${req.params.id}.`);
-      res.status(200).json({
-        customBackground: updatedEntry.customBackground//left off here
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error with updating entry." });
-    });
 });
 
 
