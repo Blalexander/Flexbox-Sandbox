@@ -10,14 +10,14 @@
   <body>
  	 <nav>
     <h1 class="nav-heading">Flexbox Sandbox</h1>
-    <h2 id="currentScore">Current Score: </h2>
-    <h2 id="topScore">High Score: </h2>
-    <a class="logout-btn" href="index.html"><button>Log Out</button></a>
-    <form id="startGame">
-      <button id="startGameButton" type="submit">Start Game!</button>
-    </form>
     <form id="resetScore">
       <button id="resetScoreButton" type="submit">Reset Score</button>
+    </form>
+    <a class="logout-btn" href="index.html"><button>Log Out</button></a>
+    <h2 id="currentScore">Current Score: </h2>
+    <h2 id="topScore">High Score: </h2>
+    <form id="startGame">
+      <button id="startGameButton" type="submit">Start Game!</button>
     </form>
     <section id="controlBox">
       <button class="flexButton" id="addElement">Add Element</button>
@@ -64,6 +64,8 @@
 		  src="https://code.jquery.com/jquery-3.3.1.min.js"
 		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		  crossorigin="anonymous"></script>
+        <script type="text/javascript" src="controlPanel.js"></script>   
+        <script type="text/javascript" src="game.js"></script>        
         <script type="text/javascript" src="sandbox.js"></script>
         <script type="text/javascript" src="index.js"></script>        
  	</body>
