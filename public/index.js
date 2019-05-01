@@ -67,7 +67,7 @@ function changeNavLinks(){
 }
 
 function displayHomePage(data){
-	getScores(localStorage.user_id);
+	// getScores(localStorage.user_id);
   // changeNavLinks();
 	if(window.location != "http://localhost:8080/sandbox.html") {
 		window.location.replace("/sandbox.html")
@@ -85,13 +85,20 @@ function displayHomePage(data){
 }
 
 function displayScores(data) {
+	if(window.location != "http://localhost:8080/sandbox.html") {
+		window.location.replace("/sandbox.html")
+	}
+
 	if(data != 0) {
 		highestScore = data;
 	}
+
 	// console.log("data: ", data)
-	let scoreItem = document.getElementById('topScore').innerHTML = "High Score: " + data;
-	// document.getElementById('topScore').append(data);
-	return scoreItem;
+	if(document.getElementById('topScore')) {
+		let scoreItem = document.getElementById('topScore').innerHTML = "High Score: " + data;
+		// document.getElementById('topScore').append(data);
+		return scoreItem;
+	}
 }
 
 function displayError(){
@@ -141,6 +148,9 @@ function getScores(user_id){
 	.then(resJson => {
 		// window.location.replace("/sandbox.html");
 		displayScores(resJson);
+		// console.log(resJson)
+		// highestScore = resJson;
+		// setTimeout(displayScores(resJson), 1000)
 		// onloadScore = await resJson;
 		// return onloadScore
 	})
@@ -160,7 +170,8 @@ function getUserId(user){
 	})
 	.then(user_id => {
 		localStorage.user_id = user_id;
-		getEntries(user_id);
+		// getEntries(user_id);
+		getScores(user_id);
 	})
 	// .then(() => {
 	// 	getScores(localStorage.user_id)
@@ -210,7 +221,9 @@ function watchLoginForm(){
 $(()=>{
 	if(localStorage.authToken){
 		// display home page
-		getEntries(localStorage.user_id);
+		// getEntries(localStorage.user_id);
+		getScores(localStorage.user_id);
+		// console.log("hey")
 	}else{
 		// display login page
 		$('#landing').css('display', 'flex');

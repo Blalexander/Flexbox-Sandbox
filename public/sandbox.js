@@ -292,6 +292,7 @@ $('.flexButton').on('click', function() {
 $(document).ready(function() {
 	targettedElement = "board";
 	document.getElementById('board').classList.add("pulse");	
+	// document.getElementById('topScore').innerHTML = "High Score: " + highestScore;
 	// console.log(onloadScore);
 });
 
@@ -299,7 +300,8 @@ $(document).ready(function() {
 
 //-------------------------things still needing completion----------------------------------------
 //flex options used on background saved to acc?
-
+//BUTTONS RETAIN COLOR WHEN SWITCHING TARGETS
+//get rid of custom background stuff.  focus on the game aspect.
 
 
 //-------------------------styling options for the finale--------------------------------------

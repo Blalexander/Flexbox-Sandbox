@@ -78,13 +78,15 @@ function flexDirectionController(){
 		if(currentElement.contains('flex-direction:column-reverse')) {
 			currentElement.replace('flex-direction:column-reverse', 'flex-direction:row');
 			document.getElementById(targettedElement).style.flexDirection = "row";
-      console.log("flex-direction: row");
-      document.getElementById('flexDirection').style.backgroundColor = "white";            
+			console.log("flex-direction: row");
+      document.getElementById('flexDirection').style.backgroundColor = "lightgreen";            			        
 		}
 		else if(currentElement.contains('flex-direction:row')) {
 			currentElement.replace('flex-direction:row', 'flex-direction:row-reverse');
 			document.getElementById(targettedElement).style.flexDirection = "row-reverse";
 			console.log("flex-direction: row-reverse");
+      document.getElementById('flexDirection').style.backgroundColor = "white";            
+
 		}
 		else if(currentElement.contains('flex-direction:row-reverse')) {
 			currentElement.replace('flex-direction:row-reverse', 'flex-direction:column');
@@ -94,8 +96,7 @@ function flexDirectionController(){
 		else if(currentElement.contains('flex-direction:column')) {
 			currentElement.replace('flex-direction:column', 'flex-direction:column-reverse');
 			document.getElementById(targettedElement).style.flexDirection = "column-reverse";
-      console.log("flex-direction: column-reverse");
-      document.getElementById('flexDirection').style.backgroundColor = "lightgreen";            
+      console.log("flex-direction: column-reverse");         
 		}
 		else {
 			console.log("error in flexDirection");
@@ -109,19 +110,19 @@ function flexWrapController(){
 		if(currentElement.contains('flex-wrap:wrap-reverse')) {
 			currentElement.replace('flex-wrap:wrap-reverse', 'flex-wrap:nowrap');
 			document.getElementById(targettedElement).style.flexWrap = "nowrap";
-      console.log("flex-wrap: nowrap");
-      document.getElementById('flexWrap').style.backgroundColor = "white";            
+			console.log("flex-wrap: nowrap");          
+      document.getElementById('flexWrap').style.backgroundColor = "lightgreen";       			
 		}
 		else if(currentElement.contains('flex-wrap:nowrap')) {
 			currentElement.replace('flex-wrap:nowrap', 'flex-wrap:wrap');
 			document.getElementById(targettedElement).style.flexWrap = "wrap";
 			console.log("flex-wrap: wrap");
+      document.getElementById('flexWrap').style.backgroundColor = "white";            			    
 		}
 		else if(currentElement.contains('flex-wrap:wrap')) {
 			currentElement.replace('flex-wrap:wrap', 'flex-wrap:wrap-reverse');
 			document.getElementById(targettedElement).style.flexWrap = "wrap-reverse";
-      console.log("flex-wrap: wrap-reverse");
-      document.getElementById('flexWrap').style.backgroundColor = "lightgreen";       
+			console.log("flex-wrap: wrap-reverse");                 			
 		}
 		else {
 			console.log("error in flexWrap");
@@ -135,13 +136,14 @@ function justifyContentController(){
 		if(currentElement.contains('justify-content:space-evenly')) {
 			currentElement.replace('justify-content:space-evenly', 'justify-content:flex-start');
 			document.getElementById(targettedElement).style.justifyContent = "flex-start";
-      console.log("justify-content: flex-start");
-      document.getElementById('justifyContent').style.backgroundColor = "white";            
+			console.log("justify-content: flex-start");
+      document.getElementById('justifyContent').style.backgroundColor = "lightgreen";            			         
 		}
 		else if(currentElement.contains('justify-content:flex-start')) {
 			currentElement.replace('justify-content:flex-start', 'justify-content:flex-end');
 			document.getElementById(targettedElement).style.justifyContent = "flex-end";
 			console.log("justify-content: flex-end");
+      document.getElementById('justifyContent').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('justify-content:flex-end')) {
 			currentElement.replace('justify-content:flex-end', 'justify-content:center');
@@ -161,8 +163,7 @@ function justifyContentController(){
     else if(currentElement.contains('justify-content:space-around')) {
 			currentElement.replace('justify-content:space-around', 'justify-content:space-evenly');
 			document.getElementById(targettedElement).style.justifyContent = "space-evenly";
-      console.log("justify-content: space-evenly");
-      document.getElementById('justifyContent').style.backgroundColor = "lightgreen";            
+      console.log("justify-content: space-evenly");          
 		}
 		else {
 			console.log("error in justifyContent");
@@ -176,18 +177,19 @@ function alignItemsController(){
 		if(currentElement.contains('align-items:flex-end')) {
 			currentElement.replace('align-items:flex-end', 'align-items:stretch');
 			document.getElementById(targettedElement).style.alignItems = "stretch";
-      console.log("align-items: stretch");
-      document.getElementById('alignItems').style.backgroundColor = "white";            
+			console.log("align-items: stretch");          
+      document.getElementById('alignItems').style.backgroundColor = "lightgreen";            			
 		}
 		else if(currentElement.contains('align-items:stretch')) {
 			currentElement.replace('align-items:stretch', 'align-items:center');
 			document.getElementById(targettedElement).style.alignItems = "center";
-			console.log("align-items: center");
+			console.log("align-items: center");          
+      document.getElementById('alignItems').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('align-items:center')) {
 			currentElement.replace('align-items:center', 'align-items:baseline');
 			document.getElementById(targettedElement).style.alignItems = "baseline";
-			console.log("align-items: baseline");
+			console.log("align-items: baseline");          
 		}
     else if(currentElement.contains('align-items:baseline')) {
 			currentElement.replace('align-items:baseline', 'align-items:flex-start');		
@@ -197,8 +199,7 @@ function alignItemsController(){
     else if(currentElement.contains('align-items:flex-start')) {
 			currentElement.replace('align-items:flex-start', 'align-items:flex-end');
 			document.getElementById(targettedElement).style.alignItems = "flex-end";
-      console.log("align-items: flex-end");
-      document.getElementById('alignItems').style.backgroundColor = "lightgreen";            
+      console.log("align-items: flex-end");           
 		}
 		else {
 			console.log("error in alignItems");
@@ -212,14 +213,15 @@ function alignContentController(){
 		if(currentElement.contains('align-content:space-around')) {
 			currentElement.replace('align-content:space-around', 'align-content:stretch');
 			document.getElementById(targettedElement).style.alignContent = "stretch";
-      console.log("align-content: stretch");
-      document.getElementById('alignContent').style.backgroundColor = "white";            
+			console.log("align-content: stretch");
+      document.getElementById('alignContent').style.backgroundColor = "lightgreen";            			       
 		}
 		else if(currentElement.contains('align-content:stretch')) {
 			currentElement.replace('align-content:stretch', 'align-content:flex-start');
 			currentElement.replace('aContent6', 'align-content:flex-start');
 			document.getElementById(targettedElement).style.alignContent = "flex-start";
 			console.log("align-content: flex-start");
+      document.getElementById('alignContent').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('align-content:flex-start')) {
 			currentElement.replace('align-content:flex-start', 'align-content:flex-end');
@@ -239,8 +241,7 @@ function alignContentController(){
     else if(currentElement.contains('align-content:space-between')) {
 			currentElement.replace('align-content:space-between', 'align-content:space-around');
 			document.getElementById(targettedElement).style.alignContent = "space-around";
-      console.log("align-content: space-around");
-      document.getElementById('alignContent').style.backgroundColor = "lightgreen";            
+      console.log("align-content: space-around");      
 		}
 		else {
 			console.log("error in alignContent");
@@ -254,13 +255,14 @@ function alignSelfController(){
 		if(currentElement.contains('align-self:stretch')) {
 			currentElement.replace('align-self:stretch', 'align-self:auto');
 			document.getElementById(targettedElement).style.alignSelf = "auto";
-      console.log("align-self: auto");
-      document.getElementById('alignSelf').style.backgroundColor = "white";            
+			console.log("align-self: auto");
+      document.getElementById('alignSelf').style.backgroundColor = "lightgreen";            			        
 		}
 		else if(currentElement.contains('align-self:auto')) {
 			currentElement.replace('align-self:auto', 'align-self:flex-start');
 			document.getElementById(targettedElement).style.alignSelf = "flex-start";
 			console.log("align-self: flex-start");
+      document.getElementById('alignSelf').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('align-self:flex-start')) {
 			currentElement.replace('align-self:flex-start', 'align-self:flex-end');
@@ -280,8 +282,7 @@ function alignSelfController(){
     else if(currentElement.contains('align-self:baseline')) {
 			currentElement.replace('align-self:baseline', 'align-self:stretch');
 			document.getElementById(targettedElement).style.alignSelf = "stretch";
-      console.log("align-self: stretch");
-      document.getElementById('alignSelf').style.backgroundColor = "lightgreen";            
+      console.log("align-self: stretch");         
 		}
 		else {
 			console.log("error in alignSelf");
@@ -295,13 +296,14 @@ function orderController(){
 		if(currentElement.contains('order:-2')) {
 			currentElement.replace('order:-2', 'order:0');
 			document.getElementById(targettedElement).style.order = "0";
-      console.log("flex-order: 0");
-      document.getElementById('order').style.backgroundColor = "white";            
+			console.log("flex-order: 0");
+      document.getElementById('order').style.backgroundColor = "lightgreen";            			     
 		}
 		else if(currentElement.contains('order:0')) {
 			currentElement.replace('order:0', 'order:1');
 			document.getElementById(targettedElement).style.order = "1";
 			console.log("flex-order: 1");
+      document.getElementById('order').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('order:1')) {
 			currentElement.replace('order:1', 'order:2');
@@ -316,8 +318,7 @@ function orderController(){
 		else if(currentElement.contains('order:-1')) {
 			currentElement.replace('order:-1', 'order:-2');
 			document.getElementById(targettedElement).style.order = "-2";
-      console.log("flex-order: -2");
-      document.getElementById('order').style.backgroundColor = "lightgreen";            
+      console.log("flex-order: -2");          
 		}
 		else {
 			console.log("error in order");
@@ -331,13 +332,14 @@ function flexGrowController(){
 		if(currentElement.contains('flex-grow:4')) {
 			currentElement.replace('flex-grow:4', 'flex-grow:0');
 			document.getElementById(targettedElement).style.flexGrow = "0";
-      console.log("flex-grow: 0");
-      document.getElementById('flexGrow').style.backgroundColor = "white";            
+			console.log("flex-grow: 0");
+      document.getElementById('flexGrow').style.backgroundColor = "lightgreen";            			        
 		}
 		else if(currentElement.contains('flex-grow:0')) {
 			currentElement.replace('flex-grow:0', 'flex-grow:1');
 			document.getElementById(targettedElement).style.flexGrow = "1";
 			console.log("flex-grow: 1");
+      document.getElementById('flexGrow').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('flex-grow:1')) {
 			currentElement.replace('flex-grow:1', 'flex-grow:2');
@@ -352,8 +354,7 @@ function flexGrowController(){
 		else if(currentElement.contains('flex-grow:3')) {
 			currentElement.replace('flex-grow:3', 'flex-grow:4');
 			document.getElementById(targettedElement).style.flexGrow = "4";
-      console.log("flex-grow: 4");
-      document.getElementById('flexGrow').style.backgroundColor = "lightgreen";            
+      console.log("flex-grow: 4");         
     }		
     else {
 			console.log("error in flexGrow");
@@ -367,13 +368,14 @@ function flexShrinkController(){
 		if(currentElement.contains('flex-shrink:5')) {
 			currentElement.replace('flex-shrink:5', 'flex-shrink:1');
 			document.getElementById(targettedElement).style.flexShrink = "1";
-      console.log("flex-shrink: 1");
-      document.getElementById('flexShrink').style.backgroundColor = "white";            
+			console.log("flex-shrink: 1");
+      document.getElementById('flexShrink').style.backgroundColor = "lightGreen";                  			        
 		}
 		else if(currentElement.contains('flex-shrink:1')) {
 			currentElement.replace('flex-shrink:1', 'flex-shrink2');
 			document.getElementById(targettedElement).style.flexShrink = "2";
 			console.log("flex-shrink: 2");
+      document.getElementById('flexShrink').style.backgroundColor = "white";            
 		}
 		else if(currentElement.contains('flex-shrink2')) {
 			currentElement.replace('flex-shrink2', 'flex-shrink:3');
@@ -388,8 +390,7 @@ function flexShrinkController(){
 		else if(currentElement.contains('flex-shrink:4')) {
 			currentElement.replace('flex-shrink:4', 'flex-shrink:5');
 			document.getElementById(targettedElement).style.flexShrink = "5";
-      console.log("flex-shrink: 5");
-      document.getElementById('flexShrink').style.backgroundColor = "lightGreen";                  
+      console.log("flex-shrink: 5");               
 		}
 		else {
 			console.log("error in flexShrink");
@@ -403,13 +404,14 @@ function flexBasisController(){
 		if(currentElement.contains('flex-basis:4')) {
 			currentElement.replace('flex-basis:4', 'flex-basis:auto');
 			document.getElementById(targettedElement).style.flexBasis = "auto";
-      console.log("flex-basis: auto");
-      document.getElementById('flexBasis').style.backgroundColor = "white";                  
+			console.log("flex-basis: auto");
+      document.getElementById('flexBasis').style.backgroundColor = "lightgreen";                        			                
 		}
 		else if(currentElement.contains('flex-basis:auto')) {
 			currentElement.replace('flex-basis:auto', 'flex-basis:1');
 			document.getElementById(targettedElement).style.flexBasis = "1";
 			console.log("flex-basis: 1");
+      document.getElementById('flexBasis').style.backgroundColor = "white";                  
 		}
 		else if(currentElement.contains('flex-basis:1')) {
 			currentElement.replace('flex-basis:1', 'flex-basis:2');
@@ -424,8 +426,7 @@ function flexBasisController(){
 		else if(currentElement.contains('flex-basis:3')) {
 			currentElement.replace('flex-basis:3', 'flex-basis:4');
 			document.getElementById(targettedElement).style.flexBasis = "4";
-      console.log("flex-basis: 4");
-      document.getElementById('flexBasis').style.backgroundColor = "lightgreen";                        
+      console.log("flex-basis: 4");                       
 		}
 		else {
 			console.log("error in flexBasis");
