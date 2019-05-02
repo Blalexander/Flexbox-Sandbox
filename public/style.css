@@ -86,10 +86,10 @@ h2 {
 }
 
 #controlBox {
-  background-color: white;
+/*   background-color: white; */
   height: 60vh;
   width: 15vw;
-  border: 5px solid green;
+/*   border: 5px solid green; */
   margin-top: 3vh;
 }
 
@@ -115,6 +115,7 @@ h2 {
 .flexButton {
   height: 3vh;
   text-align: left;
+  background: linear-gradient(to right, lightgreen, green);
 }
 
 .largestElement {

@@ -7,7 +7,6 @@ const path = require('path');
 
 const { router: usersRouter } = require('./users');
 const { router: entriesRouter } = require('./entries');
-const { Entry } = require('./entries/models');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;

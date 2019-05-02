@@ -17,8 +17,6 @@ function startGame() { //add slight border to left side to give sense of perspec
 function levelRandomizer() { //add diversity at least to where main container box appears
 	let swappableGameIds = ["gameItem1", "gameItem2", "gameItem3", "gameItem4", "gameItem5"];
 	
-	// let randFlexNumber = Math.floor(Math.random() * 10);
-	// let randFlexOption = Math.floor(Math.random() * 10);
 	let randMediums = Math.floor(Math.random() * 5) + 1;
 	let randSmall = Math.floor(Math.random() * 5);
 	let percentStorage = ["20%", "40%", "60%", "80%", "100%"];
@@ -96,35 +94,15 @@ function levelRandomizer() { //add diversity at least to where main container bo
 
 	let containerDivClasses = $('#containerDiv');
 	console.log(containerDivClasses);
-
-	// $('#resetScore').submit(function(event) {
-	// 	event.preventDefault();
-	// 	deleteScore();
-  // });
-
 }
 
 $('#resetScore').submit(function(event) {
 	event.preventDefault();
+	highestScore = 0;
+	displayScores(highestScore);
 	deleteScore();
 });
 
-// function levelOne() {
-// 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="mediumDiv" class="mediumDiv"></div>');
-// 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="smallDiv" class="smallDiv"></div>');
-// 	document.getElementById('gameBoard').insertAdjacentHTML('beforeend', '<div id="tinyDiv" class="tinyDiv"></div>');
-// 	let answerBox = ["mediumDiv", "smallDiv", "tinyDiv"];
-
-
-//   document.getElementById('gameBoard').style.flexDirection = "column";
-//   document.getElementById('gameBoard').style.justifyContent = "center";
-//   document.getElementById('gameBoard').style.alignItems = "center";
-	
-// 	$('#endGame').submit(function(event) {
-//     event.preventDefault();
-// 		puzzleCompleted();
-//   });
-// }
 
 function testChildNodes(itemChildNodes, containerDivChildNodes) {
 	let leftTest = [];
@@ -310,10 +288,6 @@ function puzzleCompleted() {
           highestScore = scoreTracker;
 					putScore({scoreTracker, user: localStorage.authToken});
         }
-				// else {
-				// 	// highestScore = scoreTracker;
-				// 	putScore({scoreTracker, user: localStorage.authToken});
-				// }
 
 				displayScores(highestScore);
 

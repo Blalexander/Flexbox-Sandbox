@@ -5,31 +5,6 @@ function watchLogoutButton(){
 	});
 }
 
-function postEntry(entry){
-	fetch("/entries", {
-		method: "POST",
-		body: JSON.stringify(entry),
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Bearer '+localStorage.authToken
-		}
-	})
-	.then(res=> {
-		if(res.ok){
-			return res.json;
-		}
-		throw new Error(res.statusText);
-	})
-	.then(data=>{
-		console.log(data); //data turns out to be "json()", only readable in networking tab
-		// location.replace("/index.html");
-	})
-	.catch(err=>{
-		// displayError();
-		console.log(err);
-	});
-}
-
 function postScore(userScore){
 	fetch("/entries/scores", {
 		method: "POST",
@@ -46,11 +21,9 @@ function postScore(userScore){
 		throw new Error(res.statusText);
 	})
 	.then(data=>{
-		console.log(data); //data turns out to be "json()", only readable in networking tab
-		// location.replace("/index.html");
+		console.log(data); 
 	})
 	.catch(err=>{
-		// displayError();
 		console.log(err);
 	});
 }
@@ -71,11 +44,9 @@ function putScore(userScore){
 		throw new Error(res.statusText);
 	})
 	.then(data=>{
-		console.log(data); //data turns out to be "json()", only readable in networking tab
-		// location.replace("/index.html");
+		console.log(data);
 	})
 	.catch(err=>{
-		// displayError();
 		console.log(err);
 	});
 }
@@ -98,50 +69,25 @@ function deleteScore(){
 		highestScore = 0;
 	})
 	.catch(err=>{
-		// displayError();
 		console.log(err);
 	});
 }
 
-watchNewEntryForm();
-clearCustomBackground();
-
-function watchNewEntryForm(){
-	$('#newEntry').submit(function(e){
-		// $('.error').remove();
-		e.preventDefault();
-		let customBackground = $("#customBackground").val();
-    document.getElementById('board').style.backgroundImage = `url(${customBackground})`;		
-		postEntry({
-			customBackground,
-			user: localStorage.authToken
-		});
-	});
-}
-
-function clearCustomBackground() {
-  $('#clearBackground').submit(function(e) {
-    e.preventDefault();
-    document.getElementById('board').style.backgroundImage = "none";		
-  });
-}
-
 $(()=>{
 	if(localStorage.authToken){
-		// getEntry(localStorage.entryId);
-		// watchEditForm();
+		getScores(localStorage.user_id);
 		watchLogoutButton();
 	}
-	// else{
-	// 	// if not logged in and player accesses this page, redirect to login.
-	// 	location.replace("/index.html");
-	// }
+	else{
+		// if not logged in and player accesses this page, redirect to login.
+		location.replace("/index.html");
+	}
 });
 
 
 
 
-
+let highestScore = 0;
 let targettedElement = 'board';
 let targettedElementsClass;
 let currentElement;
@@ -161,8 +107,6 @@ $("#board").on('click', function(event) {
 
 function elementSelector() {
 	console.log(targettedElement);
-	// targettedElement = event.target.getAttribute('id');
-	// targettedElementsClass = targettedElement.getAttribute('class');
 	currentElement = document.getElementById(targettedElement).classList;
 	elementValueUpdater();
 	currentElement.add("pulse");
@@ -197,7 +141,6 @@ function watchAddElement(){
 			let divL = document.createElement('div');
 			divL.id = swappableId[iterator];
 			divL.classList.add("largestElement", "height:20%", "width:20%", "flex-direction:row", "flex-wrap:nowrap", "justify-content:flex-start", "align-items:stretch", "align-content:stretch", "align-self:auto", "order:0", "flex-grow:0", "flex-shrink:1", "flex-basis:auto");
-      // USE SPREAD SYNTAX FOR ^ ARRAYS  
 			document.getElementById(targettedElement).appendChild(divL);
 			iterator++;
 			if(iterator == 5) {
@@ -269,7 +212,6 @@ function watchAddElement(){
 
 startGame();
 watchAddElement();
-// elementSelector();
 elementResizer();
 flexDirectionController();
 flexWrapController();
@@ -285,26 +227,23 @@ flexBasisController();
 $('.flexButton').on('click', function() {
 	console.log("Flex button watcher working!");
 	elementValueUpdater();
-	// setTimeout(puzzleCompleted(), 1000)
 	puzzleCompleted();
 });
 
 $(document).ready(function() {
 	targettedElement = "board";
 	document.getElementById('board').classList.add("pulse");	
-	// document.getElementById('topScore').innerHTML = "High Score: " + highestScore;
-	// console.log(onloadScore);
 });
 
 
 
 //-------------------------things still needing completion----------------------------------------
-//flex options used on background saved to acc?
-//BUTTONS RETAIN COLOR WHEN SWITCHING TARGETS
-//get rid of custom background stuff.  focus on the game aspect.
+//finalize styling
+//clean up code
+//make so user can't spam button to rack up points
 
 
 //-------------------------styling options for the finale--------------------------------------
-//have default values highlighted green?
+
 //have listener for if button text changes, button flashes red?
 //hint button to hightlight correct answer buttons
