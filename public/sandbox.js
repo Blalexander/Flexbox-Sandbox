@@ -105,6 +105,8 @@ $("#board").on('click', function(event) {
 })
 
 
+
+
 function elementSelector() {
 	console.log(targettedElement);
 	currentElement = document.getElementById(targettedElement).classList;
@@ -210,7 +212,7 @@ function watchAddElement(){
 }
 
 
-startGame();
+// startGame();
 watchAddElement();
 elementResizer();
 flexDirectionController();
@@ -224,6 +226,7 @@ flexGrowController();
 flexShrinkController();
 flexBasisController();
 
+
 $('.flexButton').on('click', function() {
 	console.log("Flex button watcher working!");
 	elementValueUpdater();
@@ -235,12 +238,45 @@ $(document).ready(function() {
 	document.getElementById('board').classList.add("pulse");	
 });
 
+$('.selectorButtons').on('click', (event) => { 
+	console.log(event.currentTarget.id)
+	let whichButton = event.currentTarget.id
+	let possibleChildNodes = ["board", "item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8", "item9", "item10", "item11", "item12", "item13", "item14", "item15"];
+	if(whichButton === "previousElement") {
+		possibleChildNodes.reverse();
+	}
+	let pulseSelector = document.querySelector('.pulse').id;
+
+	if(possibleChildNodes.includes(pulseSelector)) {
+		let pulsingIndex = possibleChildNodes.indexOf(pulseSelector)
+		let nextPulsingId = possibleChildNodes.find((eachNode, nodeIndex) => {
+			let index2use = "#" + eachNode
+			if(nodeIndex > pulsingIndex && document.querySelector(index2use) != null) {
+				return index2use
+			}
+		})
+		if(nextPulsingId === undefined) {
+			nextPulsingId = possibleChildNodes.find((eachNode, nodeIndex) => {
+				let index2use = "#" + eachNode
+				if(nodeIndex < pulsingIndex && document.querySelector(index2use) != null) {
+					return index2use
+				}
+			})
+		}
+
+		console.log(nextPulsingId)
+		targettedElement = nextPulsingId;
+		elementSelector();
+	}
+})
 
 
 //-------------------------things still needing completion----------------------------------------
 //finalize styling
 //clean up code
 //make so user can't spam button to rack up points
+//INSTEAD OF BORDERS LAYERING ON TOP OF EACH OTHER, HAVE EACH NESTED LAYER SHRINK BORDER INSIDE
+//CHANGE START BUTTON TO BE "NEXT LEVEL" AFTER USED THE FIRST TIME
 
 
 //-------------------------styling options for the finale--------------------------------------

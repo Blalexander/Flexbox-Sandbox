@@ -1,9 +1,12 @@
 let gameCompleted; //Flexbox Gameboard?
 let scoreTracker = 0;
+let onlySubmitGameOnce = 0; //each nested level denotes another layer on sandcastle.  border and colors chosen by layer
+//next element and previous element buttons for primary way to swap
 
-function startGame() { //add slight border to left side to give sense of perspective for object you're working in
+// function startGame() { //add slight border to left side to give sense of perspective for object you're working in
   $('#startGame').submit(function(event) {
 		event.preventDefault();
+		onlySubmitGameOnce = 1;
 		document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 		$('#gameBoard').html("");
 		$('#board').html("");		
@@ -12,7 +15,7 @@ function startGame() { //add slight border to left side to give sense of perspec
 		document.getElementById('board').style.backgroundColor = "transparent";
 		levelRandomizer();
   });
-}
+// }
 
 function levelRandomizer() { //add diversity at least to where main container box appears
 	let swappableGameIds = ["gameItem1", "gameItem2", "gameItem3", "gameItem4", "gameItem5"];
@@ -112,61 +115,63 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 	
 
 	for(i=0;i<itemChildNodes.length;i++) {
-		console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
-		if(itemChildNodes[i].offsetLeft <= containerDivChildNodes[i].offsetLeft + 100 && itemChildNodes[i].offsetLeft >= containerDivChildNodes[i].offsetLeft - 100) {
-			console.log("Left Pass!");
-			leftTest.push("Pass");
-		}
-		else {
-			console.log("Left Fail!");
-			leftTest.push("Fail");
-		}
+		if(itemChildNodes[i] && containerDivChildNodes[i]) {
+			console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
+			if(itemChildNodes[i].offsetLeft <= containerDivChildNodes[i].offsetLeft + 100 && itemChildNodes[i].offsetLeft >= containerDivChildNodes[i].offsetLeft - 100) {
+				console.log("Left Pass!");
+				leftTest.push("Pass");
+			}
+			else {
+				console.log("Left Fail!");
+				leftTest.push("Fail");
+			}
 
 
-		console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
-		if(itemChildNodes[i].offsetTop <= containerDivChildNodes[i].offsetTop + 100 && itemChildNodes[i].offsetTop >= containerDivChildNodes[i].offsetTop - 100) {
-			console.log("Top Pass!");
-			topTest.push("Pass");
-		}
-		else {
-			console.log("Top Fail!");
-			topTest.push("Fail");
-		}
+			console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
+			if(itemChildNodes[i].offsetTop <= containerDivChildNodes[i].offsetTop + 100 && itemChildNodes[i].offsetTop >= containerDivChildNodes[i].offsetTop - 100) {
+				console.log("Top Pass!");
+				topTest.push("Pass");
+			}
+			else {
+				console.log("Top Fail!");
+				topTest.push("Fail");
+			}
 
 
-		console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
-		if(itemChildNodes[i].offsetWidth <= containerDivChildNodes[i].offsetWidth + 100 && itemChildNodes[i].offsetWidth >= containerDivChildNodes[i].offsetWidth - 100) {
-			console.log("Width Pass!");
-			widthTest.push("Pass");
-		}
-		else {
-			console.log("Width Fail!");
-			widthTest.push("Fail");
-		}
+			console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
+			if(itemChildNodes[i].offsetWidth <= containerDivChildNodes[i].offsetWidth + 100 && itemChildNodes[i].offsetWidth >= containerDivChildNodes[i].offsetWidth - 100) {
+				console.log("Width Pass!");
+				widthTest.push("Pass");
+			}
+			else {
+				console.log("Width Fail!");
+				widthTest.push("Fail");
+			}
 
 
-		console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
-		if(itemChildNodes[i].offsetHeight <= containerDivChildNodes[i].offsetHeight + 100 && itemChildNodes[i].offsetHeight >= containerDivChildNodes[i].offsetHeight - 100) {
-			console.log("Height Pass!");
-			heightTest.push("Pass");
-		}
-		else {
-			console.log("Height Fail!");
-			heightTest.push("Fail");
-		}
+			console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
+			if(itemChildNodes[i].offsetHeight <= containerDivChildNodes[i].offsetHeight + 100 && itemChildNodes[i].offsetHeight >= containerDivChildNodes[i].offsetHeight - 100) {
+				console.log("Height Pass!");
+				heightTest.push("Pass");
+			}
+			else {
+				console.log("Height Fail!");
+				heightTest.push("Fail");
+			}
 
 
-		if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
-			document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid cyan";
-			document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid cyan";
-			document.getElementById(itemChildNodes[i].id).style.borderRight = "6px solid cyan";
-			document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid cyan";
-		}
-		else {
-			document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px dashed green";
-			document.getElementById(itemChildNodes[i].id).style.borderTop = "5px dashed green";
-			document.getElementById(itemChildNodes[i].id).style.borderRight = "6px dashed green";
-			document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px dashed green";
+			if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
+				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid cyan";
+				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid cyan";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "6px solid cyan";
+				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid cyan";
+			}
+			else {
+				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px dashed green";
+				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px dashed green";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "6px dashed green";
+				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px dashed green";
+			}
 		}
 	}
 
@@ -279,15 +284,24 @@ function puzzleCompleted() {
 			}) //user can change flex options to wrong then right and it will keep adding onto score
 
 			if(testerr == true) {
-				scoreTracker++;
-				if(highestScore == 0) {
+				// scoreTracker++;
+				if(onlySubmitGameOnce === 1) {
+					scoreTracker++;
+					onlySubmitGameOnce = 0;
+				}
+				if(highestScore == 0 && onlySubmitGameOnce === 1) {
+					// scoreTracker--;
 					highestScore = scoreTracker;
 					postScore({scoreTracker, user: localStorage.authToken});
+					// onlySubmitGameOnce = 0;
         }
-        else if(scoreTracker > highestScore) {
+				else if(scoreTracker > highestScore && onlySubmitGameOnce === 1) { //put a mutable token right here that toggles once per completed puzzle
+					// scoreTracker--; //when WINNERR displays, submit
           highestScore = scoreTracker;
 					putScore({scoreTracker, user: localStorage.authToken});
-        }
+					// onlySubmitGameOnce = 0;
+				}
+				// onlySubmitGameOnce = 0;
 
 				displayScores(highestScore);
 
