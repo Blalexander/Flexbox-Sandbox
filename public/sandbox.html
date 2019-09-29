@@ -12,23 +12,23 @@
  	 <nav>
     <a class="logout-btn" href="index.html"><button>Log Out</button></a>
     <h1 class="nav-heading">Flexbox Sandbox</h1>
-    <h2 id="currentScore">Current Score: 0</h2>
-    <h2 id="topScore">High Score: 0</h2>
     <form id="resetScore">
-        <button id="resetScoreButton" type="submit">Reset Score</button>
-      </form>
+      <button id="resetScoreButton" type="submit">Reset Score</button>
+    </form>
+    <h2 id="topScore">High Score: 0</h2>
+    <h2 id="currentScore">Current Score: 0</h2>
+    <button id="resetBoard">Reset Board</button>
     <form id="startGame">
       <button id="startGameButton" type="submit">Start Game!</button>
     </form>
     <section id="controlBox">
-      <section id="removeButtons">
-        <button class="flexButton" id="removeElement">Remove Element</button>
-        <button class="flexButton" id="removeAll">Remove All</button>
+      <section id="addRemoveButtons">
+        <button class="flexButton" id="addElement">+</button>
+        <button class="flexButton" id="removeElement">-</button>
       </section>
-      <button class="flexButton" id="addElement">Add Element</button>
       <section id="elementSelectorButtons">
-        <button class="flexButton selectorButtons" id="previousElement">Previous Element</button>
-        <button class="flexButton selectorButtons" id="nextElement">Next Element</button>
+        <button class="flexButton selectorButtons" id="previousElement"> < </button>
+        <button class="flexButton selectorButtons" id="nextElement"> > </button>
       </section>
       <section id="flexOptions">
         <button class="flexButton" id="heightPlus">Height: </button>

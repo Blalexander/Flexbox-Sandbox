@@ -203,9 +203,10 @@ function watchAddElement(){
 			document.getElementById(targettedElement).remove();
 		}
 	});
-	$('#removeAll').on('click', function(event) {
+	$('#resetBoard').on('click', function(event) {
 		event.preventDefault();
 		isThereAlreadyAnElement = "no";
+		document.getElementById('startGameButton').innerHTML = "Start Game!";
 		$('#board').html("");
 		$('#gameBoard').html("");
 	});
@@ -274,9 +275,15 @@ $('.selectorButtons').on('click', (event) => {
 //-------------------------things still needing completion----------------------------------------
 //finalize styling
 //clean up code
-//make so user can't spam button to rack up points
 //INSTEAD OF BORDERS LAYERING ON TOP OF EACH OTHER, HAVE EACH NESTED LAYER SHRINK BORDER INSIDE
 //CHANGE START BUTTON TO BE "NEXT LEVEL" AFTER USED THE FIRST TIME
+//boxes to be filled flashing instead of currently selected one.  currently selected has a noticeable color
+//change buttons to be: +   -   --   <-   ->
+//adjust answers to be more precise
+//transition between colors each round?
+//ON WIN, LARGE/MED/SMALL ELEMENTS GET WHITE BACKGROUND COLOR AND 3PX BOX SHADOW
+//next level highlights green to show you can progress
+//border size smaller so double and solid are more differentiated
 
 
 //-------------------------styling options for the finale--------------------------------------

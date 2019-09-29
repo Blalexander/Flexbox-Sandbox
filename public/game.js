@@ -8,6 +8,7 @@ let onlySubmitGameOnce = 0; //each nested level denotes another layer on sandcas
 		event.preventDefault();
 		onlySubmitGameOnce = 1;
 		document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
+		document.getElementById('startGameButton').innerHTML = "Next Level";
 		$('#gameBoard').html("");
 		$('#board').html("");		
 		targettedElement = "board";
@@ -163,14 +164,14 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 			if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
 				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid cyan";
 				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid cyan";
-				document.getElementById(itemChildNodes[i].id).style.borderRight = "6px solid cyan";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px solid cyan";
 				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid cyan";
 			}
 			else {
-				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px dashed green";
-				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px dashed green";
-				document.getElementById(itemChildNodes[i].id).style.borderRight = "6px dashed green";
-				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px dashed green";
+				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px dashed blue";
+				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px dashed blue";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px dashed blue";
+				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px dashed blue";
 			}
 		}
 	}
@@ -236,14 +237,14 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 		if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
 			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid cyan";
 			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid cyan";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "6px solid cyan";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid cyan";
 			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid cyan";
 		}
 		else {
-			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px dashed green";
-			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px dashed green";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "6px dashed green";
-			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px dashed green";
+			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px dashed blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px dashed blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px dashed blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px dashed blue";
 		}
 	}
 
@@ -281,27 +282,21 @@ function puzzleCompleted() {
 				else {
 					return true;
 				}
-			}) //user can change flex options to wrong then right and it will keep adding onto score
+			}) 
 
 			if(testerr == true) {
-				// scoreTracker++;
 				if(onlySubmitGameOnce === 1) {
 					scoreTracker++;
 					onlySubmitGameOnce = 0;
 				}
 				if(highestScore == 0 && onlySubmitGameOnce === 1) {
-					// scoreTracker--;
 					highestScore = scoreTracker;
 					postScore({scoreTracker, user: localStorage.authToken});
-					// onlySubmitGameOnce = 0;
         }
-				else if(scoreTracker > highestScore && onlySubmitGameOnce === 1) { //put a mutable token right here that toggles once per completed puzzle
-					// scoreTracker--; //when WINNERR displays, submit
+				else if(scoreTracker > highestScore && onlySubmitGameOnce === 1) { 
           highestScore = scoreTracker;
 					putScore({scoreTracker, user: localStorage.authToken});
-					// onlySubmitGameOnce = 0;
 				}
-				// onlySubmitGameOnce = 0;
 
 				displayScores(highestScore);
 
