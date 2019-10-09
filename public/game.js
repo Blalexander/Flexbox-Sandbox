@@ -168,10 +168,10 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid cyan";
 			}
 			else {
-				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px dashed blue";
-				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px dashed blue";
-				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px dashed blue";
-				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px dashed blue";
+				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid blue";
+				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid blue";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px solid blue";
+				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid blue";
 			}
 		}
 	}
@@ -241,10 +241,10 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid cyan";
 		}
 		else {
-			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px dashed blue";
-			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px dashed blue";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px dashed blue";
-			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px dashed blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid blue";
 		}
 	}
 
@@ -301,6 +301,10 @@ function puzzleCompleted() {
 				displayScores(highestScore);
 
 				document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
+				document.getElementById('currentScore').classList.add('winner');
+				setTimeout(() => {
+					document.getElementById('currentScore').classList.remove('winner');
+				}, 2000)
 				console.log("WWWWIIIINNNNEEEERRRRR!");
 			}
 		}	

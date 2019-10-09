@@ -206,7 +206,7 @@ function watchAddElement(){
 	$('#resetBoard').on('click', function(event) {
 		event.preventDefault();
 		isThereAlreadyAnElement = "no";
-		document.getElementById('startGameButton').innerHTML = "Start Game!";
+		document.getElementById('startGameButton').innerHTML = "Start";
 		$('#board').html("");
 		$('#gameBoard').html("");
 	});
