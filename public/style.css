@@ -13,7 +13,7 @@
 }
 
 .logout-btn {
-  left: 2vw;
+/*   left: 2vw; */
   position: absolute;
 }
 
@@ -50,11 +50,15 @@
 
 nav {
   height: 100vh;
+/*   height: 50%; */
   width: 20vw;
-  float: right;
+/*   float: right; */
   display: inline-flex;
   flex-flow: column nowrap;
   align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .nav-heading {
@@ -154,7 +158,7 @@ button:hover {
 #flexOptions {
   height: 80%;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: space-evenly;
 }
 
@@ -358,3 +362,74 @@ button:hover {
     border-style: double;
   }
 }
+
+  /* stylings for varying screen sizes------------------- */
+  @media only screen and (max-width:800px) {
+    #board, #boardBackground, #gameBoard {
+      width: 90vw;
+      height: 40vh;
+    }
+    nav {
+      right: unset;
+      top: unset;
+      height:50vh;
+      width: 95vw;
+    }
+    .nav-heading {
+      font-size-adjust: .5;
+      margin-bottom: 1vh;
+    }
+    #flexBasis, #flex, #order, #flexFlow {
+      display: none;
+    }
+    #flexOptions >.flexButton {
+      height: 4vh;
+      border: 2px solid white;
+    }
+
+    #resetBoard {
+      margin-top: 0vh;
+    }
+    #controlBox {
+      height: 25vh;
+      width: 90vw;
+      display: flex;
+      flex-flow: column wrap;
+    }
+    #addElement {
+      position: absolute;
+      right: 5vw;
+      top: 5vh;
+      width: 10vw;
+    }
+    #removeElement {
+      position: absolute;
+      left: 5vw;
+      top: 5vh;
+      width: 10vw;
+    }
+    #nextElement {
+      position: absolute;
+      right: 5vw;
+      top: 15vh;
+      height: 12vh;
+      width: 10vw;
+    }
+    #previousElement {
+      position: absolute;
+      left: 5vw;
+      top: 15vh;
+      height: 12vh;
+      width: 10vw;
+    }
+    #startGameButton {
+      margin-top: 3vh;
+    }
+  }
+  
+  @media only screen and (min-width:300px) {
+/*     #board, #boardBackground, #gameBoard {
+      width: 90vw;
+      height: 50vh;
+    } */
+  }
