@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flexbox Sandbox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Abel|Archivo+Narrow&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+    <main>
+      <div id="boardBackground">
+        <div id="gameBoard"></div>
+        <div id="board" class="fillerClass height:------ width:------ flex-direction:row flex-wrap:nowrap justify-content:flex-start align-items:stretch align-content:stretch align-self:------ order:0 flex-grow:0 flex-shrink:1 flex-basis:auto"></div>
+      </div>
+    </main>
+ 	 <nav>
+    <a class="logout-btn" href="index.html"><button>Log Out</button></a>
+    <h1 class="nav-heading">Flexbox Sandbox</h1>
+    <form id="resetScore">
+      <button id="resetScoreButton" type="submit">Reset Score</button>
+    </form>
+    <h2 id="topScore">High Score: 0</h2>
+    <h2 id="currentScore">Current Score: 0</h2>
+    <button id="resetBoard">Reset Board</button>
+    <form id="startGame">
+      <button id="startGameButton" type="submit">Start</button>
+    </form>
+    <section id="addRemoveButtons">
+        <button class="flexButton" id="addElement">+</button>
+        <button class="flexButton" id="removeElement">-</button>
+      </section>
+      <section id="elementSelectorButtons">
+        <button class="flexButton selectorButtons" id="previousElement"> < </button>
+        <button class="flexButton selectorButtons" id="nextElement"> > </button>
+      </section>
+    <section id="controlBox">
+      <!-- <section id="addRemoveButtons">
+        <button class="flexButton" id="addElement">+</button>
+        <button class="flexButton" id="removeElement">-</button>
+      </section>
+      <section id="elementSelectorButtons">
+        <button class="flexButton selectorButtons" id="previousElement"> < </button>
+        <button class="flexButton selectorButtons" id="nextElement"> > </button>
+      </section> -->
+  
+      <section id="flexOptions">
+        <button class="flexButton" id="heightPlus">Height: </button>
+        <button class="flexButton" id="widthPlus">Width: </button>
+        <button class="flexButton" id="flexDirection">flex-direction: </button>
+        <button class="flexButton" id="flexWrap">flex-wrap: </button>
+        <button class="flexButton" id="flexFlow">flex-flow:------------ </button>
+        <button class="flexButton" id="justifyContent">justify-content: </button>
+        <button class="flexButton" id="alignItems">align-items: </button>
+        <button class="flexButton" id="alignContent">align-content: </button>
+        <button class="flexButton" id="alignSelf">align-self: </button>
+        <button class="flexButton" id="order">order: </button>
+        <button class="flexButton" id="flex">flex:-------------- </button>
+        <button class="flexButton" id="flexGrow">flex-grow: </button>
+        <button class="flexButton" id="flexShrink">flex-shrink: </button>
+        <button class="flexButton" id="flexBasis">flex-basis: </button> 
+      </section>
+    </section>
+ 	 </nav>
+    <!-- <main>
+      <div id="boardBackground">
+        <div id="gameBoard"></div>
+        <div id="board" class="fillerClass height:------ width:------ flex-direction:row flex-wrap:nowrap justify-content:flex-start align-items:stretch align-content:stretch align-self:------ order:0 flex-grow:0 flex-shrink:1 flex-basis:auto"></div>
+      </div>
+    </main> -->
+        <script
+		  src="https://code.jquery.com/jquery-3.3.1.min.js"
+		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		  crossorigin="anonymous"></script>
+        <script type="text/javascript" src="controlPanel.js"></script>   
+        <script type="text/javascript" src="game.js"></script>        
+        <script type="text/javascript" src="sandbox.js"></script>
+        <script type="text/javascript" src="index.js"></script>        
+ 	</body>
+</html>

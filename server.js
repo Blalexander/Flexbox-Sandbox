@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'docs')));
 app.use('/users', usersRouter);
 app.use('/entries', entriesRouter);
 app.use('/auth', authRouter);
