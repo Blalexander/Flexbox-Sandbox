@@ -284,19 +284,19 @@ function puzzleCompleted() {
 				}
 			}) 
 
-			if(testerr == true) {
-				if(onlySubmitGameOnce === 1) {
-					scoreTracker++;
-					onlySubmitGameOnce = 0;
-				}
-				if(highestScore == 0 && onlySubmitGameOnce === 1) {
-					highestScore = scoreTracker;
-					postScore({scoreTracker, user: localStorage.authToken});
-        }
-				else if(scoreTracker > highestScore && onlySubmitGameOnce === 1) { 
+			if(testerr == true && onlySubmitGameOnce === 1) {
+				scoreTracker++;
+				onlySubmitGameOnce = 0;
+				if(scoreTracker > highestScore) { 
           highestScore = scoreTracker;
 					putScore({scoreTracker, user: localStorage.authToken});
+					console.log(scoreTracker, highestScore, "PUT")
 				}
+				else if(highestScore == 0) {
+					highestScore = scoreTracker;
+					postScore({scoreTracker, user: localStorage.authToken});
+					console.log(scoreTracker, highestScore, "POST")
+        }
 
 				displayScores(highestScore);
 
