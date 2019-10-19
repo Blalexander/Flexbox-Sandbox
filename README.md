@@ -9,16 +9,16 @@
 ![Screenshot1](/screenshots/fbsblanding2.png)
 
 ## After logging in
-![Screenshot1](/screenshots/fbsbgame1.png)
+![Screenshot1](/screenshots/fbsb1.png)
 
 ## Pressing Start generates a random puzzle
-![Screenshot1](/screenshots/fbsbgame2.png)
+![Screenshot1](/screenshots/fbsb2.png)
 
 ## Adding an item by hitting the + sign
-![Screenshot1](/screenshots/fbsbgame3.png)
+![Screenshot1](/screenshots/fbsb3.png)
 
 ## Correctly matching the shapes and earning a point
-![Screenshot1](/screenshots/fbsbgame4.png)
+![Screenshot1](/screenshots/fbsb4.png)
 
 
 ## Summary:

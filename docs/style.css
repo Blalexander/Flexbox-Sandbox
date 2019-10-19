@@ -145,7 +145,7 @@ h2 {
 }
 
 #startGameButton:hover {
-  background: linear-gradient(to top, lime, springgreen);
+  background: linear-gradient(to top, #61feae, springgreen);
   border-radius: 15px;
   border-bottom: none;
   font-size-adjust: .80;
@@ -181,7 +181,7 @@ button:hover {
 .flexButton {
   height: 3vh;
   text-align: left;
-  background: linear-gradient(to bottom, rgba(175, 238, 238, .8), rgba(00, 238, 238, .8));
+  background: linear-gradient(to bottom, #6ac6fd, #0fa6ff);
   font-size-adjust: .65;
   border-radius: 5px;
 /*   border: 1px solid white; */
@@ -217,11 +217,11 @@ button:hover {
 
 
 #addElement:hover, #previousElement:hover, #nextElement:hover {
-  background: paleturquoise;
+  background: #6ac6fd;
 }
 
 .flexButton:hover {
-  background: paleturquoise;
+  background: #6ac6fd;
 }
 
 #elementSelectorButtons {
@@ -337,7 +337,7 @@ button:hover {
   transition: 0.5s;
   border-radius: 10px;
   padding: 5px;
-  background-color: rgba(255, 0, 0, .5);
+  background-color: #ff8862;
 }
 
 .mediumDiv {
@@ -347,7 +347,7 @@ button:hover {
 /*   border: 5px dashed red; */
 /*   background-color: lightgray; */
   border: 5px solid transparent;
-  background-color: rgba(255, 0, 0, .5);
+  background-color: #ff6332;
   border-radius: 10px;
 }
 

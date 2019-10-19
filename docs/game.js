@@ -162,16 +162,16 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 
 
 			if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
-				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid cyan";
-				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid cyan";
-				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px solid cyan";
-				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid cyan";
+				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid #81ff01";
+				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid #81ff01";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px solid #81ff01";
+				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid #81ff01";
 			}
 			else {
-				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid blue";
-				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid blue";
-				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px solid blue";
-				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid blue";
+				document.getElementById(itemChildNodes[i].id).style.borderLeft = "5px solid #0077be";
+				document.getElementById(itemChildNodes[i].id).style.borderTop = "5px solid #0077be";
+				document.getElementById(itemChildNodes[i].id).style.borderRight = "5px solid #0077be";
+				document.getElementById(itemChildNodes[i].id).style.borderBottom = "5px solid #0077be";
 			}
 		}
 	}
@@ -235,16 +235,16 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 
 
 		if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
-			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid cyan";
-			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid cyan";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid cyan";
-			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid cyan";
+			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid #81ff01";
+			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid #81ff01";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid #81ff01";
+			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid #81ff01";
 		}
 		else {
-			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid blue";
-			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid blue";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid blue";
-			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid blue";
+			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid #0077be";
+			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid #0077be";
+			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid #0077be";
+			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid #0077be";
 		}
 	}
 
