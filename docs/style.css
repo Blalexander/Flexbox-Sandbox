@@ -97,6 +97,10 @@ h2 {
   border: 5px solid lightgray;
 }
 
+.winner-color-change .containerDiv, .winner-color-change .mediumDiv {
+  background-color: rgba(15, 166, 255, 0.5);
+}
+
 #board {
   z-index: 1;
   display: flex;
@@ -109,6 +113,7 @@ h2 {
   padding: 9px;
   border: 1px solid transparent;
 }
+
 
 #resetScoreButton {
   border: none;
@@ -155,11 +160,6 @@ h2 {
 #controlBox {
   height: 60vh;
   width: 15vw;
-}
-
-.winner {
-  box-shadow: 0 0 50px rgba(0, 255, 0, 1);
-  color: springgreen;
 }
 
 #currentScore {
@@ -376,6 +376,10 @@ button:hover {
   animation: shadow-pulse 1s infinite;
 }
 
+.winner {
+  color: springgreen;
+}
+
 @keyframes shadow-pulse
 {
   0% {
@@ -455,9 +459,36 @@ button:hover {
     }
   }
   
-  @media only screen and (min-width:300px) {
-/*     #board, #boardBackground, #gameBoard {
-      width: 90vw;
-      height: 50vh;
-    } */
+  @media only screen and (max-height:730px) {
+    nav {
+      bottom: 0;
+      height: 55vh;
+    }
+    .nav-heading {
+      margin: 0;
+      padding-top: 2vh;
+    }
+    #resetScoreButton {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 0vh;
+      right: 15vw;
+    }
+    #resetBoard {
+      margin-top: 0vh;
+      position: absolute;
+      top: 0vh;
+      left: 15vw;
+    }
+    .logout-btn {
+      top: 0vh;
+    }
+    #startGameButton {
+      line-height: 1.5;
+    }
+    #flexOptions>.flexButton {
+      font-size-adjust: .5;
+      
+    }
   }

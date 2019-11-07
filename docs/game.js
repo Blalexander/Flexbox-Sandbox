@@ -9,6 +9,7 @@ let onlySubmitGameOnce = 0; //each nested level denotes another layer on sandcas
 		onlySubmitGameOnce = 1;
 		document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 		document.getElementById('startGameButton').innerHTML = "Next Level";
+		document.getElementById('gameBoard').classList.remove('winner-color-change');
 		$('#gameBoard').html("");
 		$('#board').html("");		
 		targettedElement = "board";
@@ -287,21 +288,23 @@ function puzzleCompleted() {
 			if(testerr == true && onlySubmitGameOnce === 1) {
 				scoreTracker++;
 				onlySubmitGameOnce = 0;
-				if(scoreTracker > highestScore) { 
-          highestScore = scoreTracker;
-					putScore({scoreTracker, user: localStorage.authToken});
-					console.log(scoreTracker, highestScore, "PUT")
-				}
-				else if(highestScore == 0) {
+				if(highestScore == 0) {
 					highestScore = scoreTracker;
 					postScore({scoreTracker, user: localStorage.authToken});
 					console.log(scoreTracker, highestScore, "POST")
         }
+				else if(scoreTracker > highestScore) { 
+          highestScore = scoreTracker;
+					putScore({scoreTracker, user: localStorage.authToken});
+					console.log(scoreTracker, highestScore, "PUT")
+				}
 
 				displayScores(highestScore);
 
 				document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
 				document.getElementById('currentScore').classList.add('winner');
+				document.getElementById('gameBoard').classList.add('winner-color-change');
+
 				setTimeout(() => {
 					document.getElementById('currentScore').classList.remove('winner');
 				}, 2000)

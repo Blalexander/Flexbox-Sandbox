@@ -21,6 +21,7 @@ nav {
   flex-flow: column nowrap;
   text-align: center;
   align-items: center;
+/*   margin-top: 10vh; */
 }
 
 .landing-title {
@@ -43,7 +44,7 @@ nav {
   justify-content:space-evenly;
   height: 30vh;
   width: 170px;
-  margin-top: 15vh;
+  margin-top: 5vh;
 }
 
 
@@ -70,4 +71,19 @@ input {
 
 input:focus {
   background-color: rgba(0, 255, 255, .3);
+}
+
+@media only screen and (min-width:300px) {
+  #login {
+    height: 40vh;
+  }
+  #login h1 {
+    margin-bottom: 0vh;
+  }
+  #login label {
+    margin-top: 2vh;
+  }
+  #login button {
+    margin-top: 4vh;
+  }
 }

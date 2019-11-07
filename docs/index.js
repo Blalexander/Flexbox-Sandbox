@@ -11,6 +11,7 @@ function displayScores(data) {
 	}
 
 	if(data != 0) {
+		console.log(data)
 		highestScore = data;
 	}
 
