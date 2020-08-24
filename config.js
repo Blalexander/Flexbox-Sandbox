@@ -6,7 +6,7 @@ exports.DATABASE_URL =
   // "mongodb://testuser:testpassword2@ds029824.mlab.com:29824/test-db";
 exports.TEST_DATABASE_URL =
   process.env.TEST_DATABASE_URL || "mongodb://localhost/testnode_capstone";
-exports.PORT = process.env.PORT || 8080;
+exports.PORT = process.env.PORT || 3001;
 
 exports.JWT_SECRET = process.env.JWT_SECRET || "secret";
 exports.JWT_EXPIRY = process.env.JWT_EXPIRY || "7d";

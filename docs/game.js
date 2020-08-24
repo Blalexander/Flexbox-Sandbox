@@ -1,25 +1,22 @@
-let gameCompleted; //Flexbox Gameboard?
+let gameCompleted; 
 let scoreTracker = 0;
-let onlySubmitGameOnce = 0; //each nested level denotes another layer on sandcastle.  border and colors chosen by layer
-//next element and previous element buttons for primary way to swap
+let onlySubmitGameOnce = 0; 
 
-// function startGame() { //add slight border to left side to give sense of perspective for object you're working in
-  $('#startGame').submit(function(event) {
-		event.preventDefault();
-		onlySubmitGameOnce = 1;
-		document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
-		document.getElementById('startGameButton').innerHTML = "Next Level";
-		document.getElementById('gameBoard').classList.remove('winner-color-change');
-		$('#gameBoard').html("");
-		$('#board').html("");		
-		targettedElement = "board";
-		elementSelector();
-		document.getElementById('board').style.backgroundColor = "transparent";
-		levelRandomizer();
-  });
-// }
+$('#startGame').submit(function(event) {
+	event.preventDefault();
+	onlySubmitGameOnce = 1;
+	document.getElementById('currentScore').innerHTML = "Current Score: " + scoreTracker;
+	document.getElementById('startGameButton').innerHTML = "Next Level";
+	document.getElementById('gameBoard').classList.remove('winner-color-change');
+	$('#gameBoard').html("");
+	$('#board').html("");		
+	targettedElement = "board";
+	elementSelector();
+	document.getElementById('board').style.backgroundColor = "transparent";
+	levelRandomizer();
+});
 
-function levelRandomizer() { //add diversity at least to where main container box appears
+function levelRandomizer() { 
 	let swappableGameIds = ["gameItem1", "gameItem2", "gameItem3", "gameItem4", "gameItem5"];
 	
 	let randMediums = Math.floor(Math.random() * 5) + 1;
@@ -57,48 +54,48 @@ function levelRandomizer() { //add diversity at least to where main container bo
 
 		switch(selectedFlexOption) {
 			case "flexDirection":
-			console.log("flexDirection");
+			// console.log("flexDirection");
 				document.getElementById('containerDiv').style.flexDirection = fd[randFlexOption];
 				break;
 			case "flexWrap":
-				console.log("flexWrap");
+				// console.log("flexWrap");
 				document.getElementById('containerDiv').style.flexWrap = fw[randFlexOption];
 				break;
 			case "justifyContent":
-				console.log("justifyContent");
+				// console.log("justifyContent");
 				document.getElementById('containerDiv').style.justifyContent = jc[randFlexOption];
 				break;
 			case "alignItems":
-				console.log("alignItems");
+				// console.log("alignItems");
 				document.getElementById('containerDiv').style.alignItems = ai[randFlexOption];
 				break;
 			case "alignContent":
-				console.log("alignContent");
+				// console.log("alignContent");
 				document.getElementById('containerDiv').style.alignContent = ac[randFlexOption];
 				break;
 			case "alignSelf":
-				console.log("alignSelf");
+				// console.log("alignSelf");
 				document.getElementById('containerDiv').style.alignSelf = as[randFlexOption];
 				break;
 			case "flexGrow":
-				console.log("flexGrow");
+				// console.log("flexGrow");
 				document.getElementById('containerDiv').style.flexGrow = fg[randFlexOption];
 				break;
 			case "flexShrink":
-				console.log("flexShrink");
+				// console.log("flexShrink");
 				document.getElementById('containerDiv').style.flexShrink = fs[randFlexOption];
 				break;
 			case "flexBasis":
-				console.log("flexBasis");
+				// console.log("flexBasis");
 				document.getElementById('containerDiv').style.flexBasis = fb[randFlexOption];
 				break;
 			default:
-				console.log("Default used!");
+				// console.log("Default used!");
 		}
 	}
 
 	let containerDivClasses = $('#containerDiv');
-	console.log(containerDivClasses);
+	// console.log(containerDivClasses);
 }
 
 $('#resetScore').submit(function(event) {
@@ -118,46 +115,46 @@ function testChildNodes(itemChildNodes, containerDivChildNodes) {
 
 	for(i=0;i<itemChildNodes.length;i++) {
 		if(itemChildNodes[i] && containerDivChildNodes[i]) {
-			console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
+			// console.log(itemChildNodes[i].offsetLeft, containerDivChildNodes[i].offsetLeft);
 			if(itemChildNodes[i].offsetLeft <= containerDivChildNodes[i].offsetLeft + 10 && itemChildNodes[i].offsetLeft >= containerDivChildNodes[i].offsetLeft - 10) {
-				console.log("Left Pass!");
+				// console.log("Left Pass!");
 				leftTest.push("Pass");
 			}
 			else {
-				console.log("Left Fail!");
+				// console.log("Left Fail!");
 				leftTest.push("Fail");
 			}
 
 
-			console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
+			// console.log(itemChildNodes[i].offsetTop, containerDivChildNodes[i].offsetTop);
 			if(itemChildNodes[i].offsetTop <= containerDivChildNodes[i].offsetTop + 10 && itemChildNodes[i].offsetTop >= containerDivChildNodes[i].offsetTop - 10) {
-				console.log("Top Pass!");
+				// console.log("Top Pass!");
 				topTest.push("Pass");
 			}
 			else {
-				console.log("Top Fail!");
+				// console.log("Top Fail!");
 				topTest.push("Fail");
 			}
 
 
-			console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
+			// console.log(itemChildNodes[i].offsetWidth, containerDivChildNodes[i].offsetWidth);
 			if(itemChildNodes[i].offsetWidth <= containerDivChildNodes[i].offsetWidth + 10 && itemChildNodes[i].offsetWidth >= containerDivChildNodes[i].offsetWidth - 10) {
-				console.log("Width Pass!");
+				// console.log("Width Pass!");
 				widthTest.push("Pass");
 			}
 			else {
-				console.log("Width Fail!");
+				// console.log("Width Fail!");
 				widthTest.push("Fail");
 			}
 
 
-			console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
+			// console.log(itemChildNodes[i].offsetHeight, containerDivChildNodes[i].offsetHeight);
 			if(itemChildNodes[i].offsetHeight <= containerDivChildNodes[i].offsetHeight + 10 && itemChildNodes[i].offsetHeight >= containerDivChildNodes[i].offsetHeight - 10) {
-				console.log("Height Pass!");
+				// console.log("Height Pass!");
 				heightTest.push("Pass");
 			}
 			else {
-				console.log("Height Fail!");
+				// console.log("Height Fail!");
 				heightTest.push("Fail");
 			}
 
@@ -191,46 +188,46 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); //always logging "8 0"
+		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); 
 		if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 10 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 10) {
-			console.log("Left Pass!");
+			// console.log("Left Pass!");
 			leftTest.push("Pass");
 		}
 		else {
-			console.log("Left Fail!");
+			// console.log("Left Fail!");
 			leftTest.push("Fail");
 		}
 	
 
 		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
 		if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 10 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 10) {
-			console.log("Top Pass!");
+			// console.log("Top Pass!");
 			topTest.push("Pass");
 		}
 		else {
-			console.log("Top Fail!");
+			// console.log("Top Fail!");
 			topTest.push("Fail");
 		}
 	
 
 		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
 		if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 10 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 10) {
-			console.log("Width Pass!");
+			// console.log("Width Pass!");
 			widthTest.push("Pass");
 		}
 		else {
-			console.log("Width Fail!");
+			// console.log("Width Fail!");
 			widthTest.push("Fail");
 		}
 	
 
 		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
 		if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 10 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 10) {
-			console.log("Height Pass!");
+			// console.log("Height Pass!");
 			heightTest.push("Pass");
 		}
 		else {
-			console.log("Height Fail!");
+			// console.log("Height Fail!");
 			heightTest.push("Fail");
 		}
 
@@ -262,9 +259,9 @@ function puzzleCompleted() {
 		let containerDivChildNodes = document.getElementById('containerDiv').childNodes;
 
 		let containerNodeTests = testContainerNode(boardsChildNodes, gameBoardsChildNodes);
-		console.log(containerNodeTests);
+		// console.log(containerNodeTests);
 		let childNodeTests = testChildNodes(itemChildNodes, containerDivChildNodes);
-		console.log(childNodeTests);
+		// console.log(childNodeTests);
 
 
 
@@ -273,7 +270,7 @@ function puzzleCompleted() {
 		let bothTests = testAgainstContainer + testAgainstChild;
 		bothTests *= 4;
 		let bothAnswers = containerNodeTests.concat(childNodeTests);
-		console.log(bothAnswers, bothTests);
+		// console.log(bothAnswers, bothTests);
 
 		if(bothAnswers.length == bothTests) {
 			let testerr = bothAnswers.every(testItem => {
@@ -291,12 +288,12 @@ function puzzleCompleted() {
 				if(highestScore == 0) {
 					highestScore = scoreTracker;
 					postScore({scoreTracker, user: localStorage.authToken});
-					console.log(scoreTracker, highestScore, "POST")
+					// console.log(scoreTracker, highestScore, "POST")
         }
 				else if(scoreTracker > highestScore) { 
           highestScore = scoreTracker;
 					putScore({scoreTracker, user: localStorage.authToken});
-					console.log(scoreTracker, highestScore, "PUT")
+					// console.log(scoreTracker, highestScore, "PUT")
 				}
 
 				displayScores(highestScore);
@@ -308,7 +305,7 @@ function puzzleCompleted() {
 				setTimeout(() => {
 					document.getElementById('currentScore').classList.remove('winner');
 				}, 2000)
-				console.log("WWWWIIIINNNNEEEERRRRR!");
+				// console.log("WWWWIIIINNNNEEEERRRRR!");
 			}
 		}	
 }

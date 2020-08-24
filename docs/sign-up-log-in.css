@@ -5,15 +5,26 @@
   font-family: 'Archivo Narrow', sans-serif;
 }
 
+html {
+  height: 100%;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.1);
+}
+
 body {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  margin-top: 15vh;
 }
 
 nav {
   text-align: center;
-  margin-top: 5vh;
+/*   margin-top: 15vh; */
+}
+
+h1 {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2) 
+  , -1px -1px 1px rgba(255, 255, 255, 0.3);
 }
 
 #landing {
@@ -25,7 +36,14 @@ nav {
 }
 
 .landing-title {
+  margin-top: 0vh;
+}
+
+.signupSection, .loginSection {
+  border-radius: 5px;
   margin-top: 5vh;
+  padding: 1em;
+  text-align: center;
 }
 
 #signup {
@@ -34,7 +52,20 @@ nav {
   flex-flow: column nowrap;
   justify-content:space-evenly;
   height: 30vh;
-  margin-top: 15vh;
+  margin-top: 10vh;
+  border-radius: 5px;
+  padding: 2em;
+}
+
+#signupButton, #loginButton {
+  border: none;
+  background-color: transparent;
+  color: blue;
+}
+
+#signupButton:hover, #loginButton:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 #login {
@@ -43,12 +74,19 @@ nav {
   flex-flow: column nowrap;
   justify-content:space-evenly;
   height: 30vh;
-  width: 170px;
-  margin-top: 5vh;
+  padding: 2em;
+/*   width: 170px; */
+/*   margin-top: 10vh; */
+/*   border: 2px solid gray; */
+  border-radius: 5px;
 }
 
+#login, #signup, .submitLogin, .signupSection, .loginSection {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2) 
+  , -2px -2px 2px rgba(255, 255, 255, 0.3);
+}
 
-button {
+.submitLogin, .loginButtonContainer button {
   background-color: springgreen;
   border-radius: 5px;
   border: none;
@@ -56,7 +94,7 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+.submitLogin:hover {
   background: linear-gradient(to top, lime, springgreen);
   border-radius: 15px;
   cursor: pointer;
@@ -73,17 +111,32 @@ input:focus {
   background-color: rgba(0, 255, 255, .3);
 }
 
+.error-container {
+/*   display: none; */
+/*   position: absolute; */
+  opacity: 0;
+  top: 30%;
+  padding: 1em;
+/*   color: red; */
+  border: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.4);
+  border-radius: 5px;
+  margin-top: 5vh;
+  margin-bottom: 1vh;
+}
+
 @media only screen and (min-width:300px) {
-  #login {
-    height: 40vh;
+/*   #login {
+    height: 20vh;
+  } */
+  #login h1, #signup h1 {
+    margin-bottom: 2vh;
   }
-  #login h1 {
-    margin-bottom: 0vh;
-  }
-  #login label {
+  #login label, #signup label {
     margin-top: 2vh;
   }
-  #login button {
-    margin-top: 4vh;
+  #login button, #signup button {
+    margin-top: 3vh;
+    margin-bottom: 2vh;
   }
 }

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Flexbox Sandbox</title>
+    <meta name="description" content="Flexbox Sandbox generates random puzzles for users to solve using adjustable Flexbox properties">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
@@ -12,8 +13,9 @@
       <section id="landing-header">
         <h1 class="landing-title">Welcome to Flexbox Sandbox</h1>
         <p class="landing-description">A unique environment to help you understand Flexbox through custom made challenges or freely testing all that Flexbox has to offer</p>
-        <a href="signup.html"><button id="signupButton">Sign Up</button></a>
+        <!-- <a href="signup.html"><button id="signupButton">Sign Up</button></a> -->
       </section>
+      <div class="error-container">Incorrect username or password</div>
       <form id="login">
         <h1>Login</h1>
         <label for="username-input">Username:</label>
@@ -22,9 +24,12 @@
         <label for="password-input">Password:</label>
         <input type="password" name="password" id="password-input" required>
         <br>
-        <button type="submit">Submit</button>
+        <button class="submitLogin" type="submit">Submit</button>
       </form>
-      <!-- <a href="signup.html"><button id="signupButton">Sign Up</button></a> -->
+      <div class="signupSection">
+        <p class="signupButtonHeader">Don't have an account?</p>
+        <a class="signupButtonContainer" href="signup.html"><button id="signupButton">Create one here</button></a>
+      </div>
     </main>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

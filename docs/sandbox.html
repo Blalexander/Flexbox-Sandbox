@@ -28,29 +28,37 @@
       <button id="startGameButton" type="submit">Start</button>
     </form>
     <section id="addRemoveButtons">
-        <button class="flexButton" id="addElement">+</button>
-        <button class="flexButton" id="removeElement">-</button>
+        <button class="flexButton" id="addElement">+
+          <div class="tooltip">Add child to currently selected element</div>
+        </button>
+        <button class="flexButton" id="removeElement">-
+          <div class="tooltip">Remove currently selected element</div>
+        </button>
       </section>
       <section id="elementSelectorButtons">
-        <button class="flexButton selectorButtons" id="previousElement"> < </button>
-        <button class="flexButton selectorButtons" id="nextElement"> > </button>
+        <button class="flexButton selectorButtons" id="previousElement"> < 
+          <div class="tooltip">Select previous element</div>
+        </button>
+        <button class="flexButton selectorButtons" id="nextElement"> > 
+          <div class="tooltip">Select next element</div>
+        </button>
       </section>
     <section id="controlBox">
       <section id="flexOptions">
-        <button class="flexButton" id="heightPlus">Height: </button>
-        <button class="flexButton" id="widthPlus">Width: </button>
-        <button class="flexButton" id="flexDirection">flex-direction: </button>
-        <button class="flexButton" id="flexWrap">flex-wrap: </button>
-        <button class="flexButton" id="flexFlow">flex-flow:------------ </button>
-        <button class="flexButton" id="justifyContent">justify-content: </button>
-        <button class="flexButton" id="alignItems">align-items: </button>
-        <button class="flexButton" id="alignContent">align-content: </button>
-        <button class="flexButton" id="alignSelf">align-self: </button>
-        <button class="flexButton" id="order">order: </button>
-        <button class="flexButton" id="flex">flex:-------------- </button>
-        <button class="flexButton" id="flexGrow">flex-grow: </button>
-        <button class="flexButton" id="flexShrink">flex-shrink: </button>
-        <button class="flexButton" id="flexBasis">flex-basis: </button> 
+        <button class="flexButton flexOption" id="heightPlus">Height: </button>
+        <button class="flexButton flexOption" id="widthPlus">Width: </button>
+        <button class="flexButton flexOption" id="flexDirection">flex-direction: </button>
+        <button class="flexButton flexOption" id="flexWrap">flex-wrap: </button>
+        <button class="flexButton flexOption" id="flexFlow">flex-flow:------------ </button>
+        <button class="flexButton flexOption" id="justifyContent">justify-content: </button>
+        <button class="flexButton flexOption" id="alignItems">align-items: </button>
+        <button class="flexButton flexOption" id="alignContent">align-content: </button>
+        <button class="flexButton flexOption" id="alignSelf">align-self: </button>
+        <button class="flexButton flexOption" id="order">order: </button>
+        <button class="flexButton flexOption" id="flex">flex:-------------- </button>
+        <button class="flexButton flexOption" id="flexGrow">flex-grow: </button>
+        <button class="flexButton flexOption" id="flexShrink">flex-shrink: </button>
+        <button class="flexButton flexOption" id="flexBasis">flex-basis: </button> 
       </section>
     </section>
  	</nav>

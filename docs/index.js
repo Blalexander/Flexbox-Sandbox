@@ -6,8 +6,8 @@ function watchLogoutButton(){
 }
 
 function displayScores(data) {
-	// if(window.location != "http://localhost:8080/sandbox.html") { ///WHAT WAS I THINKING
-	if(window.location != "https://vast-tundra-61213.herokuapp.com/sandbox.html") { 
+	if(window.location != "http://localhost:3001/sandbox.html") { ///WHAT WAS I THINKING
+	// if(window.location != "https://vast-tundra-61213.herokuapp.com/sandbox.html") { 
 		window.location.replace("/sandbox.html")
 	}
 
@@ -77,7 +77,11 @@ function getToken(user){
 		getUserId(_user); 
 	})
 	.catch(err=>{
-		console.error(err);
+		// console.error(err); //this handles incorrect logins
+		document.querySelector('.error-container').style.opacity = 1;
+		setTimeout(() => {
+			document.querySelector('.error-container').style.opacity = 0;
+		}, 10000)
 	});
 }
 
