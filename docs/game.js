@@ -185,64 +185,68 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 	let topTest = [];
 	let heightTest = [];
 	let widthTest = [];
-	
 
 	for(i=0;i<boardsChildNodes.length;i++) {
-		console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); 
-		if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 10 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 10) {
-			// console.log("Left Pass!");
-			leftTest.push("Pass");
+		if(gameBoardsChildNodes[i] === undefined) {
+			console.log("Oops")
 		}
 		else {
-			// console.log("Left Fail!");
-			leftTest.push("Fail");
-		}
-	
+			console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); 
+			if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 10 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 10) {
+				// console.log("Left Pass!");
+				leftTest.push("Pass");
+			}
+			else {
+				// console.log("Left Fail!");
+				leftTest.push("Fail");
+			}
+		
 
-		console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
-		if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 10 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 10) {
-			// console.log("Top Pass!");
-			topTest.push("Pass");
-		}
-		else {
-			// console.log("Top Fail!");
-			topTest.push("Fail");
-		}
-	
+			console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
+			if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 10 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 10) {
+				// console.log("Top Pass!");
+				topTest.push("Pass");
+			}
+			else {
+				// console.log("Top Fail!");
+				topTest.push("Fail");
+			}
+		
 
-		console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
-		if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 10 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 10) {
-			// console.log("Width Pass!");
-			widthTest.push("Pass");
-		}
-		else {
-			// console.log("Width Fail!");
-			widthTest.push("Fail");
-		}
-	
+			console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
+			if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 10 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 10) {
+				// console.log("Width Pass!");
+				widthTest.push("Pass");
+			}
+			else {
+				// console.log("Width Fail!");
+				widthTest.push("Fail");
+			}
+		
 
-		console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
-		if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 10 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 10) {
-			// console.log("Height Pass!");
-			heightTest.push("Pass");
-		}
-		else {
-			// console.log("Height Fail!");
-			heightTest.push("Fail");
-		}
+			console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
+			if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 10 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 10) {
+				// console.log("Height Pass!");
+				heightTest.push("Pass");
+			}
+			else {
+				// console.log("Height Fail!");
+				heightTest.push("Fail");
+			}
 
 
-		if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
-			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid #81ff01";
-			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid #81ff01";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid #81ff01";
-			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid #81ff01";
-		}
-		else {
-			document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid #0077be";
-			document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid #0077be";
-			document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid #0077be";
-			document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid #0077be";
+			if(leftTest[i] == "Pass" && topTest[i] == "Pass" && widthTest[i] == "Pass" && heightTest[i] == "Pass") {
+				document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid #81ff01";
+				document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid #81ff01";
+				document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid #81ff01";
+				document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid #81ff01";
+			}
+			else {
+				document.getElementById(boardsChildNodes[i].id).style.borderLeft = "5px solid #0077be";
+				document.getElementById(boardsChildNodes[i].id).style.borderTop = "5px solid #0077be";
+				document.getElementById(boardsChildNodes[i].id).style.borderRight = "5px solid #0077be";
+				document.getElementById(boardsChildNodes[i].id).style.borderBottom = "5px solid #0077be";
+			}
 		}
 	}
 
