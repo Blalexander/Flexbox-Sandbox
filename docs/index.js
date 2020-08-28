@@ -6,8 +6,8 @@ function watchLogoutButton(){
 }
 
 function displayScores(data) {
-	if(window.location != "http://localhost:3001/sandbox.html") { ///WHAT WAS I THINKING
-	// if(window.location != "https://vast-tundra-61213.herokuapp.com/sandbox.html") { 
+	// if(window.location != "http://localhost:3001/sandbox.html" || ) { //for testing purposes
+	if(window.location != "https://vast-tundra-61213.herokuapp.com/sandbox.html") { 
 		window.location.replace("/sandbox.html")
 	}
 
