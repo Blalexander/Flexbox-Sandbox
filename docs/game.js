@@ -191,7 +191,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			console.log("Oops")
 		}
 		else {
-			console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); 
+			// console.log(boardsChildNodes[i].offsetLeft, gameBoardsChildNodes[i].offsetLeft); 
 			if(boardsChildNodes[i].offsetLeft <= gameBoardsChildNodes[i].offsetLeft + 10 && boardsChildNodes[i].offsetLeft >= gameBoardsChildNodes[i].offsetLeft - 10) {
 				// console.log("Left Pass!");
 				leftTest.push("Pass");
@@ -202,7 +202,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			}
 		
 
-			console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
+			// console.log(boardsChildNodes[i].offsetTop, gameBoardsChildNodes[i].offsetTop);
 			if(boardsChildNodes[i].offsetTop <= gameBoardsChildNodes[i].offsetTop + 10 && boardsChildNodes[i].offsetTop >= gameBoardsChildNodes[i].offsetTop - 10) {
 				// console.log("Top Pass!");
 				topTest.push("Pass");
@@ -213,7 +213,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			}
 		
 
-			console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
+			// console.log(boardsChildNodes[i].offsetWidth, gameBoardsChildNodes[i].offsetWidth);
 			if(boardsChildNodes[i].offsetWidth <= gameBoardsChildNodes[i].offsetWidth + 10 && boardsChildNodes[i].offsetWidth >= gameBoardsChildNodes[i].offsetWidth - 10) {
 				// console.log("Width Pass!");
 				widthTest.push("Pass");
@@ -224,7 +224,7 @@ function testContainerNode(boardsChildNodes, gameBoardsChildNodes) {
 			}
 		
 
-			console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
+			// console.log(boardsChildNodes[i].offsetHeight, gameBoardsChildNodes[i].offsetHeight);
 			if(boardsChildNodes[i].offsetHeight <= gameBoardsChildNodes[i].offsetHeight + 10 && boardsChildNodes[i].offsetHeight >= gameBoardsChildNodes[i].offsetHeight - 10) {
 				// console.log("Height Pass!");
 				heightTest.push("Pass");

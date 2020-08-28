@@ -6,13 +6,13 @@ function watchLogoutButton(){
 }
 
 function displayScores(data) {
-	// if(window.location != "http://localhost:3001/sandbox.html") { ///WHAT WAS I THINKING
-	if(window.location != "https://vast-tundra-61213.herokuapp.com/sandbox.html") { 
+	if(window.location != "http://localhost:3001/sandbox.html") { ///WHAT WAS I THINKING
+	// if(window.location != "https://vast-tundra-61213.herokuapp.com/sandbox.html") { 
 		window.location.replace("/sandbox.html")
 	}
 
 	if(data != 0) {
-		console.log(data)
+		// console.log(data)
 		highestScore = data;
 	}
 
@@ -31,7 +31,7 @@ function getScores(user_id){
 	})
 	.then(res=>{
     if (res.ok) {
-			console.log(res)
+			// console.log(res)
       return res.json();
 		}
 		throw new Error(res.statusText);

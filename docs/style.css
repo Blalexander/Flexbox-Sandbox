@@ -83,7 +83,7 @@ h2 {
 }
 
 .nav-heading, h2 {
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2) 
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) 
    , -1px -1px 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -165,13 +165,15 @@ h2 {
   border-radius: 15px;
   border: none;
   margin-top: 1vh;
+  transition: 0.2s;
 }
 
 #startGameButton:hover {
-  background: linear-gradient(to top, #61feae, springgreen);
+  background-image: linear-gradient(to top, #61feae, springgreen);
   border-radius: 15px;
   border-bottom: none;
-  font-size: 1.4em;
+  transform: scale3d(1.02, 1.02, 1);
+/*   font-size: 1.3em; */
 }
 
 
@@ -229,6 +231,7 @@ button:hover {
   font-size: 1rem;
 /*   background-color: white; */
   border-radius: 5px;
+  transition: 0.2s;
 }
 
 #addRemoveButtons {

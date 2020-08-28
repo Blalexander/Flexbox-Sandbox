@@ -108,7 +108,7 @@ $("#board").on('click', function(event) {
 
 
 function elementSelector() {
-	console.log(targettedElement);
+	// console.log(targettedElement);
 	currentElement = document.getElementById(targettedElement).classList;
 	elementValueUpdater();
 	currentElement.add("pulse");
@@ -120,7 +120,7 @@ function elementSelector() {
 			document.getElementsByClassName("pulse")[0].classList.remove("pulse");
 		}
 	}
-	console.log("ID:", targettedElement, "Classes:", currentElement);
+	// console.log("ID:", targettedElement, "Classes:", currentElement);
 }
 
 function elementValueUpdater() {
@@ -148,7 +148,7 @@ function watchAddElement(){
 			if(iterator == 5) {
 				iterator = 0;
 			}
-			console.log("Largest element created!");
+			// console.log("Largest element created!");
 		}
 		else if(document.getElementById(targettedElement) == undefined || document.getElementById(targettedElement) == null) {
 			let divL = document.createElement('div');
@@ -171,7 +171,7 @@ function watchAddElement(){
 			if(iterator2 == 5) {
 				iterator2 = 0;
 			}
-			console.log("Medium element created!");
+			// console.log("Medium element created!");
 		}
 		else if(document.getElementById(targettedElement).classList.contains("mediumElement")) {
 			let divS = document.createElement('div');
@@ -229,7 +229,7 @@ flexBasisController();
 
 
 $('.flexButton').on('click', function() {
-	console.log("Flex button watcher working!");
+	// console.log("Flex button watcher working!");
 	elementValueUpdater();
 	puzzleCompleted();
 });
