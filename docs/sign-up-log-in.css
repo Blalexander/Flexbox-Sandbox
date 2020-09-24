@@ -95,7 +95,7 @@ h1 {
 }
 
 .submitLogin:hover {
-  background: linear-gradient(to top, lime, springgreen);
+  background-image: linear-gradient(to top, lime, springgreen);
   border-radius: 15px;
   cursor: pointer;
 }

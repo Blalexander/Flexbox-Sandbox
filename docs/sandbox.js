@@ -270,23 +270,3 @@ $('.selectorButtons').on('click', (event) => {
 		elementSelector();
 	}
 })
-
-
-//-------------------------things still needing completion----------------------------------------
-//finalize styling
-//clean up code
-//INSTEAD OF BORDERS LAYERING ON TOP OF EACH OTHER, HAVE EACH NESTED LAYER SHRINK BORDER INSIDE
-//CHANGE START BUTTON TO BE "NEXT LEVEL" AFTER USED THE FIRST TIME
-//boxes to be filled flashing instead of currently selected one.  currently selected has a noticeable color
-//change buttons to be: +   -   --   <-   ->
-//adjust answers to be more precise
-//transition between colors each round?
-//ON WIN, LARGE/MED/SMALL ELEMENTS GET WHITE BACKGROUND COLOR AND 3PX BOX SHADOW
-//next level highlights green to show you can progress
-//border size smaller so double and solid are more differentiated
-
-
-//-------------------------styling options for the finale--------------------------------------
-
-//have listener for if button text changes, button flashes red?
-//hint button to hightlight correct answer buttons
