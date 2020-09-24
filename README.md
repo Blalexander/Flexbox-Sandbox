@@ -6,7 +6,7 @@ The goal of this app was to provide a simple way to experiment with Flexbox styl
 
 The landing page allows for a visitor to log in to an existing profile or create a new one with a username and password.  From there elements can be freely created in the sandbox to test out flexbox properties or the Start button can be selected.  When the Start button is selected a randomly generated set of elements are created in the sandbox which the user will have to replicate in order to increase their score.  At any time the Next Level button can be selected to generate a new puzzle, regardless of whether or not a point was gained for the current one.  
 
-## Live link to WebApp: 
+## Live App:
 
 - [Live App] (https://vast-tundra-61213.herokuapp.com/sandbox.html)
 
